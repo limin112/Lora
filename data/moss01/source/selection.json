@@ -1,0 +1,917 @@
+{
+ "trigger": "moss01",
+ "exported": "2026-10-23T12:39:43.145Z",
+ "n": 56,
+ "items": [
+  {
+   "id": "M02",
+   "batch": "第一批",
+   "file": "M02.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "braided updo",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "rainy gothic courtyard",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, cool calm expression, chin slightly raised, braided updo hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, rainy gothic courtyard, overcast daylight"
+  },
+  {
+   "id": "M03",
+   "batch": "第一批",
+   "file": "M03.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "side profile facing right",
+    "expression": "gazing out of a window",
+    "hair": "low bun",
+    "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+    "scene": "candlelit dining hall",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, full-body portrait, side profile facing right, gazing out of a window, low bun hairstyle, wearing school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers, candlelit dining hall, warm candlelight"
+  },
+  {
+   "id": "M04",
+   "batch": "第一批",
+   "file": "M04.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "looking down at an open book",
+    "hair": "two long braids",
+    "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+    "scene": "candlelit stone corridor",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, front view, looking down at an open book, two long braids hairstyle, wearing school uniform with a charcoal wool coat and a green striped scarf, candlelit stone corridor, warm candlelight"
+  },
+  {
+   "id": "M05",
+   "batch": "第一批",
+   "file": "M05.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "faint smile, chin slightly raised",
+    "hair": "half-up braided hair",
+    "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+    "scene": "gothic stair hall",
+    "lighting": "cool daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, faint smile, chin slightly raised, half-up braided hair hairstyle, wearing dark green velvet school dress with silver trim and a green ribbon tie, gothic stair hall, cool daylight"
+  },
+  {
+   "id": "M06",
+   "batch": "第一批",
+   "file": "M06.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression",
+    "hair": "low bun",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+    "scene": "snowy cloister walkway",
+    "lighting": "pale winter daylight"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, calm expression, low bun hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers, snowy cloister walkway, pale winter daylight"
+  },
+  {
+   "id": "M07",
+   "batch": "第一批",
+   "file": "M07.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised, sitting",
+    "hair": "two long braids with green ribbons",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+    "scene": "old library with wooden shelves",
+    "lighting": "warm window light"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, sitting, two long braids with green ribbons hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, old library with wooden shelves, warm window light"
+  },
+  {
+   "id": "M08",
+   "batch": "第一批",
+   "file": "M08.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "glancing to the side, chin slightly raised",
+    "hair": "two long braids",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "greenhouse with ivy",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, upper-body portrait, front view, glancing to the side, chin slightly raised, two long braids hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, greenhouse with ivy, soft daylight"
+  },
+  {
+   "id": "M09",
+   "batch": "第一批",
+   "file": "M09.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression, standing sideways",
+    "hair": "low bun",
+    "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+    "scene": "plain gray studio backdrop",
+    "lighting": "soft studio light"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, calm expression, standing sideways, low bun hairstyle, wearing school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers, plain gray studio backdrop, soft studio light"
+  },
+  {
+   "id": "M10",
+   "batch": "第一批",
+   "file": "M10.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "two long braids",
+    "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+    "scene": "rainy gothic courtyard",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, close-up portrait, front view, cool calm expression, chin slightly raised, two long braids hairstyle, wearing school uniform with a charcoal wool coat and a green striped scarf, rainy gothic courtyard, overcast daylight"
+  },
+  {
+   "id": "M11",
+   "batch": "第一批",
+   "file": "M11.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking to the side, chin resting on her hand, sitting",
+    "hair": "single braid",
+    "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+    "scene": "candlelit dining hall",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, looking to the side, chin resting on her hand, sitting, single braid hairstyle, wearing dark green velvet school dress with silver trim and a green ribbon tie, candlelit dining hall, warm candlelight"
+  },
+  {
+   "id": "M12",
+   "batch": "第一批",
+   "file": "M12.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "reading a book while standing",
+    "hair": "low bun",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+    "scene": "candlelit stone corridor",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, reading a book while standing, low bun hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers, candlelit stone corridor, warm candlelight"
+  },
+  {
+   "id": "M13",
+   "batch": "第一批",
+   "file": "M13.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "two long braids with green ribbons",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+    "scene": "gothic stair hall",
+    "lighting": "cool daylight"
+   },
+   "caption": "moss01, close-up portrait, front view, cool calm expression, chin slightly raised, two long braids with green ribbons hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, gothic stair hall, cool daylight"
+  },
+  {
+   "id": "M14",
+   "batch": "第一批",
+   "file": "M14.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "single braid",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "snowy cloister walkway",
+    "lighting": "pale winter daylight"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, single braid hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, snowy cloister walkway, pale winter daylight"
+  },
+  {
+   "id": "M15",
+   "batch": "第一批",
+   "file": "M15.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression, looking at the viewer",
+    "hair": "low bun",
+    "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+    "scene": "old library with wooden shelves",
+    "lighting": "warm window light"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, calm expression, looking at the viewer, low bun hairstyle, wearing school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers, old library with wooden shelves, warm window light"
+  },
+  {
+   "id": "M16",
+   "batch": "第一批",
+   "file": "M16.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "glancing to the side, chin slightly raised",
+    "hair": "two long braids",
+    "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+    "scene": "greenhouse with ivy",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, close-up portrait, front view, glancing to the side, chin slightly raised, two long braids hairstyle, wearing school uniform with a charcoal wool coat and a green striped scarf, greenhouse with ivy, soft daylight"
+  },
+  {
+   "id": "M17",
+   "batch": "第一批",
+   "file": "M17.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "single side braid",
+    "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+    "scene": "plain gray studio backdrop",
+    "lighting": "soft studio light"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, cool calm expression, chin slightly raised, single side braid hairstyle, wearing dark green velvet school dress with silver trim and a green ribbon tie, plain gray studio backdrop, soft studio light"
+  },
+  {
+   "id": "M18",
+   "batch": "第一批",
+   "file": "M18.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "side profile facing right",
+    "expression": "looking into the distance",
+    "hair": "low bun",
+    "outfit": "school uniform with a black hooded cloak, knee socks, loafers",
+    "scene": "rainy gothic courtyard",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, full-body portrait, side profile facing right, looking into the distance, low bun hairstyle, wearing school uniform with a black hooded cloak, knee socks, loafers, rainy gothic courtyard, overcast daylight"
+  },
+  {
+   "id": "M19",
+   "batch": "第一批",
+   "file": "M19.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking to the side",
+    "hair": "two long braids",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+    "scene": "candlelit dining hall",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, looking to the side, two long braids hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, candlelit dining hall, warm candlelight"
+  },
+  {
+   "id": "M20",
+   "batch": "第一批",
+   "file": "M20.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "looking down at an open book",
+    "hair": "single braid",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "candlelit stone corridor",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, front view, looking down at an open book, single braid hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, candlelit stone corridor, warm candlelight"
+  },
+  {
+   "id": "M21",
+   "batch": "第一批",
+   "file": "M21.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression",
+    "hair": "low bun",
+    "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+    "scene": "gothic stair hall",
+    "lighting": "cool daylight"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, calm expression, low bun hairstyle, wearing school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers, gothic stair hall, cool daylight"
+  },
+  {
+   "id": "M22",
+   "batch": "第一批",
+   "file": "M22.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "two long braids",
+    "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+    "scene": "snowy cloister walkway",
+    "lighting": "pale winter daylight"
+   },
+   "caption": "moss01, close-up portrait, front view, cool calm expression, chin slightly raised, two long braids hairstyle, wearing school uniform with a charcoal wool coat and a green striped scarf, snowy cloister walkway, pale winter daylight"
+  },
+  {
+   "id": "M23",
+   "batch": "第一批",
+   "file": "M23.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised, sitting",
+    "hair": "single braid",
+    "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+    "scene": "old library with wooden shelves",
+    "lighting": "warm window light"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, sitting, single braid hairstyle, wearing dark green velvet school dress with silver trim and a green ribbon tie, old library with wooden shelves, warm window light"
+  },
+  {
+   "id": "M24",
+   "batch": "第一批",
+   "file": "M24.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking to the side, arms folded",
+    "hair": "low bun",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+    "scene": "greenhouse with ivy",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, looking to the side, arms folded, low bun hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers, greenhouse with ivy, soft daylight"
+  },
+  {
+   "id": "M25",
+   "batch": "第一批",
+   "file": "M25.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "two long braids with green ribbons",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+    "scene": "plain gray studio backdrop",
+    "lighting": "soft studio light"
+   },
+   "caption": "moss01, close-up portrait, front view, cool calm expression, chin slightly raised, two long braids with green ribbons hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, plain gray studio backdrop, soft studio light"
+  },
+  {
+   "id": "M33",
+   "batch": "第一批",
+   "file": "M33.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "long loose straight hair",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "candlelit stone corridor",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, long loose straight hair hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, candlelit stone corridor, warm candlelight"
+  },
+  {
+   "id": "M36",
+   "batch": "第一批",
+   "file": "M36.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "single side braid",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "candlelit stone corridor",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, single side braid hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, candlelit stone corridor, warm candlelight"
+  },
+  {
+   "id": "M39",
+   "batch": "第一批",
+   "file": "M39.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression",
+    "hair": "low ponytail",
+    "outfit": "school uniform with a black hooded cloak, green ribbon tie",
+    "scene": "rainy gothic courtyard",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, calm expression, low ponytail hairstyle, wearing school uniform with a black hooded cloak, green ribbon tie, rainy gothic courtyard, overcast daylight"
+  },
+  {
+   "id": "M40",
+   "batch": "第一批",
+   "file": "M40.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking down at white flowers",
+    "hair": "long loose straight hair with a black headband",
+    "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie",
+    "scene": "greenhouse with ivy",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, looking down at white flowers, long loose straight hair with a black headband hairstyle, wearing school uniform: dark green blazer, pleated skirt, green ribbon tie, greenhouse with ivy, soft daylight"
+  },
+  {
+   "id": "M41",
+   "batch": "第一批",
+   "file": "M41.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "chin resting on her hand, sitting",
+    "hair": "long loose wavy hair",
+    "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+    "scene": "candlelit dining hall",
+    "lighting": "warm candlelight"
+   },
+   "caption": "moss01, upper-body portrait, front view, chin resting on her hand, sitting, long loose wavy hair hairstyle, wearing dark green velvet school dress with silver trim and a green ribbon tie, candlelit dining hall, warm candlelight"
+  },
+  {
+   "id": "M42",
+   "batch": "第一批",
+   "file": "M42.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking to the side",
+    "hair": "hair tied back",
+    "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+    "scene": "snowy cloister walkway",
+    "lighting": "pale winter daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, looking to the side, hair tied back hairstyle, wearing school uniform with a charcoal wool coat and a green striped scarf, snowy cloister walkway, pale winter daylight"
+  },
+  {
+   "id": "M43",
+   "batch": "第一批",
+   "file": "M43.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "looking to the side",
+    "hair": "long loose hair with a black bow",
+    "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie",
+    "scene": "gothic stair hall",
+    "lighting": "cool daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, looking to the side, long loose hair with a black bow hairstyle, wearing school uniform: dark green blazer, pleated skirt, green ribbon tie, gothic stair hall, cool daylight"
+  },
+  {
+   "id": "M44",
+   "batch": "第一批",
+   "file": "M44.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "cool calm expression, chin slightly raised",
+    "hair": "long loose straight hair",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "plain gray studio backdrop",
+    "lighting": "soft studio light"
+   },
+   "caption": "moss01, upper-body portrait, front view, cool calm expression, chin slightly raised, long loose straight hair hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, plain gray studio backdrop, soft studio light"
+  },
+  {
+   "id": "M45",
+   "batch": "第一批",
+   "file": "M45.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "front view",
+    "expression": "calm expression",
+    "hair": "low bun",
+    "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie, knee socks, loafers",
+    "scene": "stone corridor by a leaded window",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, full-body portrait, front view, calm expression, low bun hairstyle, wearing school uniform: dark green blazer, pleated skirt, green ribbon tie, knee socks, loafers, stone corridor by a leaded window, soft daylight"
+  },
+  {
+   "id": "M46",
+   "batch": "第一批",
+   "file": "M46.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "eyes lowered, reading a book, head resting on her hand, sitting",
+    "hair": "two long braids",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "old library with wooden shelves",
+    "lighting": "warm window light"
+   },
+   "caption": "moss01, upper-body portrait, front view, eyes lowered, reading a book, head resting on her hand, sitting, two long braids hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, old library with wooden shelves, warm window light"
+  },
+  {
+   "id": "M47",
+   "batch": "第一批",
+   "file": "M47.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "faint smile",
+    "hair": "long loose wavy half-up hair",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "garden courtyard with stone arches",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, upper-body portrait, front view, faint smile, long loose wavy half-up hair hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, garden courtyard with stone arches, soft daylight"
+  },
+  {
+   "id": "M48",
+   "batch": "第一批",
+   "file": "M48.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "calm expression",
+    "hair": "single side braid",
+    "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+    "scene": "stone corridor by a leaded window",
+    "lighting": "soft daylight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, calm expression, single side braid hairstyle, wearing school uniform with a black embroidered cloak, white blouse, green ribbon tie, stone corridor by a leaded window, soft daylight"
+  },
+  {
+   "id": "P01",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p01_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "side profile facing left",
+    "expression": "calm neutral expression, chin level",
+    "hair": "two neat French braids",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "plain cool-gray studio backdrop",
+    "lighting": "soft diffused studio light"
+   },
+   "caption": "moss01, close-up portrait, side profile facing left, calm neutral expression, chin level, two neat French braids hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, plain cool-gray studio backdrop, soft diffused studio light"
+  },
+  {
+   "id": "P02",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p02_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "gentle closed-mouth smile, chin level",
+    "hair": "long loose straight hair behind the ears",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "plain cool-gray studio backdrop",
+    "lighting": "soft diffused studio light"
+   },
+   "caption": "moss01, close-up portrait, three-quarter view facing right, gentle closed-mouth smile, chin level, long loose straight hair behind the ears hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, plain cool-gray studio backdrop, soft diffused studio light"
+  },
+  {
+   "id": "P03",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p03_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing left",
+    "expression": "looking into the distance, relaxed",
+    "hair": "low braided ponytail",
+    "outfit": "a cream cable-knit sweater and light blue jeans",
+    "scene": "bright modern cafe by a window",
+    "lighting": "soft window light"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing left, looking into the distance, relaxed, low braided ponytail hairstyle, wearing a cream cable-knit sweater and light blue jeans, bright modern cafe by a window, soft window light"
+  },
+  {
+   "id": "P04",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p04_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "reading a paperback book, eyes down",
+    "hair": "single side braid over the left shoulder",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "old library with dark wooden shelves",
+    "lighting": "warm window light"
+   },
+   "caption": "moss01, upper-body portrait, front view, reading a paperback book, eyes down, single side braid over the left shoulder hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, old library with dark wooden shelves, warm window light"
+  },
+  {
+   "id": "P05",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p05_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "back view, looking over shoulder",
+    "expression": "soft surprised expression",
+    "hair": "long loose straight hair",
+    "outfit": "a navy hoodie",
+    "scene": "busy modern city street",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, upper-body portrait, back view, looking over shoulder, soft surprised expression, long loose straight hair hairstyle, wearing a navy hoodie, busy modern city street, overcast daylight"
+  },
+  {
+   "id": "P06",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p06_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "back view",
+    "expression": "relaxed walking pose",
+    "hair": "two neat French braids",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers",
+    "scene": "snowy cloister walkway",
+    "lighting": "pale winter daylight"
+   },
+   "caption": "moss01, full-body portrait, back view, relaxed walking pose, two neat French braids hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers, snowy cloister walkway, pale winter daylight"
+  },
+  {
+   "id": "P07",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p07_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "back view, looking over shoulder",
+    "expression": "small friendly smile",
+    "hair": "half-up hairstyle with a black ribbon",
+    "outfit": "a long camel wool coat, dark jeans, white sneakers",
+    "scene": "autumn park path with fallen leaves",
+    "lighting": "golden hour sunlight"
+   },
+   "caption": "moss01, full-body portrait, back view, looking over shoulder, small friendly smile, half-up hairstyle with a black ribbon hairstyle, wearing a long camel wool coat, dark jeans, white sneakers, autumn park path with fallen leaves, golden hour sunlight"
+  },
+  {
+   "id": "P08",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p08_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "bright open-mouth laugh, eyes slightly squinted, chin level",
+    "hair": "long loose straight hair",
+    "outfit": "a plain white t-shirt",
+    "scene": "plain warm-gray studio backdrop",
+    "lighting": "soft diffused studio light"
+   },
+   "caption": "moss01, close-up portrait, front view, bright open-mouth laugh, eyes slightly squinted, chin level, long loose straight hair hairstyle, wearing a plain white t-shirt, plain warm-gray studio backdrop, soft diffused studio light"
+  },
+  {
+   "id": "P09",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p09_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "three-quarter view facing left",
+    "expression": "soft smile",
+    "hair": "two neat French braids",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "plain cool-gray studio backdrop",
+    "lighting": "soft diffused studio light"
+   },
+   "caption": "moss01, close-up portrait, three-quarter view facing left, soft smile, two neat French braids hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, plain cool-gray studio backdrop, soft diffused studio light"
+  },
+  {
+   "id": "P10",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p10_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view, high camera angle",
+    "expression": "curious wide-eyed expression",
+    "hair": "low bun with face-framing strands",
+    "outfit": "a light gray sweater",
+    "scene": "plain cool-gray studio backdrop",
+    "lighting": "soft diffused studio light"
+   },
+   "caption": "moss01, close-up portrait, front view, high camera angle, curious wide-eyed expression, low bun with face-framing strands hairstyle, wearing a light gray sweater, plain cool-gray studio backdrop, soft diffused studio light"
+  },
+  {
+   "id": "P11",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p11_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "eyes closed, peaceful relaxed smile, face tilted slightly down",
+    "hair": "long loose straight hair",
+    "outfit": "a pale yellow cotton blouse",
+    "scene": "sunny garden with flowers",
+    "lighting": "warm afternoon sunlight"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, eyes closed, peaceful relaxed smile, face tilted slightly down, long loose straight hair hairstyle, wearing a pale yellow cotton blouse, sunny garden with flowers, warm afternoon sunlight"
+  },
+  {
+   "id": "P12",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p12_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "close-up portrait",
+    "angle": "front view",
+    "expression": "annoyed pout, arms crossed, chin slightly raised",
+    "hair": "two Dutch braids",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "rainy school courtyard",
+    "lighting": "overcast daylight"
+   },
+   "caption": "moss01, close-up portrait, front view, annoyed pout, arms crossed, chin slightly raised, two Dutch braids hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, rainy school courtyard, overcast daylight"
+  },
+  {
+   "id": "P13",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p13_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "front view, high camera angle",
+    "expression": "friendly smile",
+    "hair": "single side braid",
+    "outfit": "a denim jacket over a white t-shirt, black jeans, white sneakers",
+    "scene": "city plaza with stone tiles",
+    "lighting": "midday sun"
+   },
+   "caption": "moss01, full-body portrait, front view, high camera angle, friendly smile, single side braid hairstyle, wearing a denim jacket over a white t-shirt, black jeans, white sneakers, city plaza with stone tiles, midday sun"
+  },
+  {
+   "id": "P14",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p14_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "front view",
+    "expression": "relaxed neutral expression, chin level",
+    "hair": "long loose straight hair",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt",
+    "scene": "grand stair hall with arches",
+    "lighting": "cool morning light"
+   },
+   "caption": "moss01, upper-body portrait, front view, relaxed neutral expression, chin level, long loose straight hair hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, grand stair hall with arches, cool morning light"
+  },
+  {
+   "id": "P15",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p15_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing left",
+    "expression": "jogging, mid-stride, cheerful expression",
+    "hair": "high ponytail",
+    "outfit": "a gray zip-up sports jacket, black running leggings, running shoes",
+    "scene": "riverside running path",
+    "lighting": "early morning light"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing left, jogging, mid-stride, cheerful expression, high ponytail hairstyle, wearing a gray zip-up sports jacket, black running leggings, running shoes, riverside running path, early morning light"
+  },
+  {
+   "id": "P16",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p16_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "front view",
+    "expression": "standing and holding a paper coffee cup, small smile",
+    "hair": "long loose straight hair",
+    "outfit": "a knee-length navy summer dress with short sleeves, white sneakers",
+    "scene": "sunny modern shopping street",
+    "lighting": "bright daylight"
+   },
+   "caption": "moss01, full-body portrait, front view, standing and holding a paper coffee cup, small smile, long loose straight hair hairstyle, wearing a knee-length navy summer dress with short sleeves, white sneakers, sunny modern shopping street, bright daylight"
+  },
+  {
+   "id": "P17",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p17_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "upper-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "laughing while talking, natural candid moment",
+    "hair": "low bun",
+    "outfit": "an oversized beige knit sweater",
+    "scene": "cozy modern cafe interior",
+    "lighting": "warm indoor light"
+   },
+   "caption": "moss01, upper-body portrait, three-quarter view facing right, laughing while talking, natural candid moment, low bun hairstyle, wearing an oversized beige knit sweater, cozy modern cafe interior, warm indoor light"
+  },
+  {
+   "id": "P18",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p18_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "front view, low camera angle",
+    "expression": "walking toward the camera, relaxed",
+    "hair": "two neat French braids",
+    "outfit": "a red puffer jacket, dark jeans, winter boots",
+    "scene": "snowy modern city street at night",
+    "lighting": "street lights and shop window glow"
+   },
+   "caption": "moss01, full-body portrait, front view, low camera angle, walking toward the camera, relaxed, two neat French braids hairstyle, wearing a red puffer jacket, dark jeans, winter boots, snowy modern city street at night, street lights and shop window glow"
+  },
+  {
+   "id": "P19",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p19_gpt_image2.png",
+   "uniform": true,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "three-quarter view facing right",
+    "expression": "sitting on stone steps, elbows on knees, thoughtful",
+    "hair": "long loose straight hair",
+    "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers",
+    "scene": "old stone staircase outdoors",
+    "lighting": "soft overcast daylight"
+   },
+   "caption": "moss01, full-body portrait, three-quarter view facing right, sitting on stone steps, elbows on knees, thoughtful, long loose straight hair hairstyle, wearing school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers, old stone staircase outdoors, soft overcast daylight"
+  },
+  {
+   "id": "P20",
+   "batch": "补拍",
+   "file": "supplement/generated_gpt_image2/p20_gpt_image2.png",
+   "uniform": false,
+   "fields": {
+    "framing": "full-body portrait",
+    "angle": "side profile facing right",
+    "expression": "leaning against a brick wall, looking down at a phone",
+    "hair": "half-up hairstyle with a black ribbon",
+    "outfit": "a white hoodie, light jeans, canvas sneakers",
+    "scene": "quiet city alley",
+    "lighting": "late afternoon light"
+   },
+   "caption": "moss01, full-body portrait, side profile facing right, leaning against a brick wall, looking down at a phone, half-up hairstyle with a black ribbon hairstyle, wearing a white hoodie, light jeans, canvas sneakers, quiet city alley, late afternoon light"
+  }
+ ],
+ "dropped": [
+  "M01",
+  "M26",
+  "M27",
+  "M28",
+  "M29",
+  "M30",
+  "M31",
+  "M32",
+  "M34",
+  "M35",
+  "M37",
+  "M38"
+ ]
+}

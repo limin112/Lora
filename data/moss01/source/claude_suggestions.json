@@ -1,0 +1,779 @@
+{
+ "M01": {
+  "use": false,
+  "note": "不用：与 M25 几乎相同，留 M25",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "two long braids with green ribbons",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "plain gray studio backdrop",
+   "lighting": "soft studio light"
+  }
+ },
+ "M02": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "braided updo",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "rainy gothic courtyard",
+   "lighting": "overcast daylight"
+  }
+ },
+ "M03": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "side profile facing right",
+   "expression": "gazing out of a window",
+   "hair": "low bun",
+   "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+   "scene": "candlelit dining hall",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M04": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "looking down at an open book",
+   "hair": "two long braids",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M05": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "faint smile, chin slightly raised",
+   "hair": "half-up braided hair",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "gothic stair hall",
+   "lighting": "cool daylight"
+  }
+ },
+ "M06": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression",
+   "hair": "low bun",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+   "scene": "snowy cloister walkway",
+   "lighting": "pale winter daylight"
+  }
+ },
+ "M07": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised, sitting",
+   "hair": "two long braids with green ribbons",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "old library with wooden shelves",
+   "lighting": "warm window light"
+  }
+ },
+ "M08": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "glancing to the side, chin slightly raised",
+   "hair": "two long braids",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "greenhouse with ivy",
+   "lighting": "soft daylight"
+  }
+ },
+ "M09": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression, standing sideways",
+   "hair": "low bun",
+   "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+   "scene": "plain gray studio backdrop",
+   "lighting": "soft studio light"
+  }
+ },
+ "M10": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "two long braids",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "rainy gothic courtyard",
+   "lighting": "overcast daylight"
+  }
+ },
+ "M11": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking to the side, chin resting on her hand, sitting",
+   "hair": "single braid",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "candlelit dining hall",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M12": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "reading a book while standing",
+   "hair": "low bun",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M13": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "two long braids with green ribbons",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "gothic stair hall",
+   "lighting": "cool daylight"
+  }
+ },
+ "M14": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "single braid",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "snowy cloister walkway",
+   "lighting": "pale winter daylight"
+  }
+ },
+ "M15": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression, looking at the viewer",
+   "hair": "low bun",
+   "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+   "scene": "old library with wooden shelves",
+   "lighting": "warm window light"
+  }
+ },
+ "M16": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "glancing to the side, chin slightly raised",
+   "hair": "two long braids",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "greenhouse with ivy",
+   "lighting": "soft daylight"
+  }
+ },
+ "M17": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "single side braid",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "plain gray studio backdrop",
+   "lighting": "soft studio light"
+  }
+ },
+ "M18": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "side profile facing right",
+   "expression": "looking into the distance",
+   "hair": "low bun",
+   "outfit": "school uniform with a black hooded cloak, knee socks, loafers",
+   "scene": "rainy gothic courtyard",
+   "lighting": "overcast daylight"
+  }
+ },
+ "M19": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking to the side",
+   "hair": "two long braids",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "candlelit dining hall",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M20": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "looking down at an open book",
+   "hair": "single braid",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M21": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression",
+   "hair": "low bun",
+   "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+   "scene": "gothic stair hall",
+   "lighting": "cool daylight"
+  }
+ },
+ "M22": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "two long braids",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "snowy cloister walkway",
+   "lighting": "pale winter daylight"
+  }
+ },
+ "M23": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised, sitting",
+   "hair": "single braid",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "old library with wooden shelves",
+   "lighting": "warm window light"
+  }
+ },
+ "M24": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking to the side, arms folded",
+   "hair": "low bun",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie, knee socks, loafers",
+   "scene": "greenhouse with ivy",
+   "lighting": "soft daylight"
+  }
+ },
+ "M25": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "two long braids with green ribbons",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "plain gray studio backdrop",
+   "lighting": "soft studio light"
+  }
+ },
+ "M26": {
+  "use": false,
+  "note": "不用：与 M02 几乎相同",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "braided updo",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "rainy gothic courtyard",
+   "lighting": "overcast daylight"
+  }
+ },
+ "M27": {
+  "use": false,
+  "note": "不用：与 M03 几乎相同",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "side profile facing right",
+   "expression": "gazing out of a window",
+   "hair": "low bun",
+   "outfit": "school uniform: white blouse, dark green vest, plaid pleated skirt, knee socks, loafers",
+   "scene": "candlelit dining hall",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M28": {
+  "use": false,
+  "note": "不用：与 M04 几乎相同",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "looking down at an open book",
+   "hair": "two long braids",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M29": {
+  "use": false,
+  "note": "不用：与 M05 几乎相同",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "single braid",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "gothic stair hall",
+   "lighting": "cool daylight"
+  }
+ },
+ "M30": {
+  "use": false,
+  "note": "不用：与 M06 几乎相同",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression",
+   "hair": "low bun",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "snowy cloister walkway",
+   "lighting": "pale winter daylight"
+  }
+ },
+ "M31": {
+  "use": false,
+  "note": "不用：与 M07 几乎相同",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised, sitting",
+   "hair": "two long braids",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie",
+   "scene": "old library with wooden shelves",
+   "lighting": "warm window light"
+  }
+ },
+ "M32": {
+  "use": false,
+  "note": "不用：与 M08 几乎相同",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "glancing to the side",
+   "hair": "two long braids",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "greenhouse with ivy",
+   "lighting": "soft daylight"
+  }
+ },
+ "M33": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "long loose straight hair",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M34": {
+  "use": false,
+  "note": "不用：M33–M38 近重复（同一走廊同一姿势），且背景有学院旗帜",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "long loose wavy hair",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M35": {
+  "use": false,
+  "note": "不用：M33–M38 近重复",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "low ponytail",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M36": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "single side braid",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M37": {
+  "use": false,
+  "note": "不用：M33–M38 近重复",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "long loose hair with a dark bow",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M38": {
+  "use": false,
+  "note": "不用：M33–M38 近重复",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "loose low bun",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "candlelit stone corridor",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M39": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression",
+   "hair": "low ponytail",
+   "outfit": "school uniform with a black hooded cloak, green ribbon tie",
+   "scene": "rainy gothic courtyard",
+   "lighting": "overcast daylight"
+  }
+ },
+ "M40": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking down at white flowers",
+   "hair": "long loose straight hair with a black headband",
+   "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie",
+   "scene": "greenhouse with ivy",
+   "lighting": "soft daylight"
+  }
+ },
+ "M41": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "chin resting on her hand, sitting",
+   "hair": "long loose wavy hair",
+   "outfit": "dark green velvet school dress with silver trim and a green ribbon tie",
+   "scene": "candlelit dining hall",
+   "lighting": "warm candlelight"
+  }
+ },
+ "M42": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking to the side",
+   "hair": "hair tied back",
+   "outfit": "school uniform with a charcoal wool coat and a green striped scarf",
+   "scene": "snowy cloister walkway",
+   "lighting": "pale winter daylight"
+  }
+ },
+ "M43": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "looking to the side",
+   "hair": "long loose hair with a black bow",
+   "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie",
+   "scene": "gothic stair hall",
+   "lighting": "cool daylight"
+  }
+ },
+ "M44": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "cool calm expression, chin slightly raised",
+   "hair": "long loose straight hair",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "plain gray studio backdrop",
+   "lighting": "soft studio light"
+  }
+ },
+ "M45": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "angle": "front view",
+   "expression": "calm expression",
+   "hair": "low bun",
+   "outfit": "school uniform: dark green blazer, pleated skirt, green ribbon tie, knee socks, loafers",
+   "scene": "stone corridor by a leaded window",
+   "lighting": "soft daylight"
+  }
+ },
+ "M46": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "eyes lowered, reading a book, head resting on her hand, sitting",
+   "hair": "two long braids",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "old library with wooden shelves",
+   "lighting": "warm window light"
+  }
+ },
+ "M47": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "front view",
+   "expression": "faint smile",
+   "hair": "long loose wavy half-up hair",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "garden courtyard with stone arches",
+   "lighting": "soft daylight"
+  }
+ },
+ "M48": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "angle": "three-quarter view facing right",
+   "expression": "calm expression",
+   "hair": "single side braid",
+   "outfit": "school uniform with a black embroidered cloak, white blouse, green ribbon tie",
+   "scene": "stone corridor by a leaded window",
+   "lighting": "soft daylight"
+  }
+ },
+ "P01": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P02": {
+  "use": true,
+  "note": "用；要求真侧脸，实际是 3/4 侧，按实际写",
+  "fields": {
+   "angle": "three-quarter view facing right",
+   "framing": "close-up portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P03": {
+  "use": true,
+  "note": "用；要求侧脸，实际身体侧对、脸 3/4 侧",
+  "fields": {
+   "angle": "three-quarter view facing left",
+   "framing": "upper-body portrait"
+  }
+ },
+ "P04": {
+  "use": true,
+  "note": "用；要求侧脸，实际接近正脸、低头看书",
+  "fields": {
+   "angle": "front view",
+   "framing": "upper-body portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P05": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait"
+  }
+ },
+ "P06": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers"
+  }
+ },
+ "P07": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ },
+ "P08": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait"
+  }
+ },
+ "P09": {
+  "use": true,
+  "note": "用；微笑比较淡",
+  "fields": {
+   "expression": "soft smile",
+   "framing": "close-up portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P10": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "close-up portrait"
+  }
+ },
+ "P11": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait"
+  }
+ },
+ "P12": {
+  "use": true,
+  "note": "用；仍有点抬下巴",
+  "fields": {
+   "expression": "annoyed pout, arms crossed, chin slightly raised",
+   "framing": "close-up portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P13": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ },
+ "P14": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt"
+  }
+ },
+ "P15": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ },
+ "P16": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ },
+ "P17": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "upper-body portrait"
+  }
+ },
+ "P18": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ },
+ "P19": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait",
+   "outfit": "school uniform: dark green cardigan, white blouse, green ribbon tie, charcoal pleated skirt, black tights, polished loafers"
+  }
+ },
+ "P20": {
+  "use": true,
+  "note": "用",
+  "fields": {
+   "framing": "full-body portrait"
+  }
+ }
+}

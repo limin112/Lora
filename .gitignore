@@ -1,0 +1,16 @@
+# 环境和下载的依赖
+.venv/
+vendor/
+weights/
+# 训练过程产生的数据（可以由 Notebook / 脚本重新生成）
+data/*/data/
+data/*/runs/
+data/*/cache/
+data/*/tmp/
+data/*/walkthrough/
+data/*/*.py
+data/*/reports/
+*.log
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store

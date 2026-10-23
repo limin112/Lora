@@ -1,0 +1,166 @@
+<!doctype html><html lang="zh"><meta charset="utf-8">
+<title>Moss 训练数据挑选</title>
+<style>
+body{font:14px -apple-system,"PingFang SC",sans-serif;margin:0;background:#f5f5f3;color:#222}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #ddd;padding:10px 16px}
+header .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+header h1{font-size:16px;margin:0 10px 0 0}
+#stats{margin-top:6px;color:#444;font-size:13px;line-height:1.6}
+button{font:inherit;padding:5px 10px;border:1px solid #bbb;background:#fff;border-radius:6px;cursor:pointer}
+button.on{background:#1f6feb;color:#fff;border-color:#1f6feb}
+button.no.on{background:#c0392b;border-color:#c0392b}
+main{padding:12px 16px}
+.filters{margin:8px 0}
+.shot{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:10px;margin:10px 0;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:12px}
+.shot.drop{opacity:.55}
+.shot.done{border-color:#2e9e4f}
+.cands{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+.cand{border:3px solid transparent;border-radius:6px;cursor:pointer;background:#fafafa;padding:2px}
+.cand.sel{border-color:#2e9e4f}
+.cand img{display:block;max-height:300px;max-width:100%;border-radius:4px}
+.cand .nm{font-size:12px;color:#666;text-align:center}
+.head{font-weight:600;margin-bottom:6px}
+.check{color:#b26a00;font-size:12px;margin-bottom:6px}
+.sug{color:#1f5fbf;font-size:12px;margin-bottom:6px}
+label.f{display:block;font-size:12px;color:#666;margin-top:4px}
+input.f,select.f{width:100%;box-sizing:border-box;font:inherit;font-size:13px;padding:3px 5px;border:1px solid #ccc;border-radius:4px}
+select.need{border-color:#c0392b;background:#fff3f2}
+.cap{margin-top:8px;font-size:12px;background:#f3f6fa;border-radius:4px;padding:6px;word-break:break-word}
+.muted{color:#888}
+#zoom{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9;align-items:center;justify-content:center}
+#zoom img{max-width:96vw;max-height:96vh}
+</style>
+<header>
+  <div class="bar">
+    <h1>Moss 训练数据挑选</h1>
+    <button id="export">导出 selection.json</button>
+    <button id="restore">恢复为 Claude 建议</button>
+    <label class="muted"><input type="file" id="import" accept=".json" style="width:170px"> 导入</label>
+    <span class="muted">筛选：</span>
+    <button data-filter="all" class="on">全部</button><button data-filter="todo">未处理</button>
+    <button data-filter="第一批">第一批</button><button data-filter="补拍">补拍</button>
+  </div>
+  <div id="stats"></div>
+</header>
+<main>
+  <p class="muted"><b>已按 Claude 的看图建议预填好</b>（蓝字是建议和理由），你只需检查、改不同意的地方。每个镜头：点一张候选图选中（再点取消），或点「这个镜头不要」。选中后按图检查右侧字段：<b>角度必须选</b>，其余字段写错了直接改。
+  下方灰框是最终的训练 caption。单击图片选中，双击放大。所有操作自动保存在本浏览器，最后点「导出 selection.json」。</p>
+  <div id="list"></div>
+</main>
+<div id="zoom"><img></div>
+<script>
+const DATA = __DATA__;
+const KEY = "moss-select-v1";
+let S = JSON.parse(localStorage.getItem(KEY) || "{}");   // id -> {pick: name|null, drop: bool, fields: {...}}
+let FILTER = "all";
+function applySuggestions(force){
+  DATA.shots.forEach(shot => {
+    if (!shot.suggest || (S[shot.id] && !force)) return;
+    S[shot.id] = {pick: shot.suggest.pick, drop: shot.suggest.drop, fields: {}};
+  });
+  localStorage.setItem(KEY, JSON.stringify(S));
+}
+applySuggestions(false);
+const FIELD_LABELS = [["framing","构图"],["angle","角度（必选）"],["expression","表情 / 动作"],["hair","发型"],["outfit","服装"],["scene","场景"],["lighting","光线"]];
+const st = id => (S[id] = S[id] || {pick: null, drop: false, fields: {}});
+const field = (shot, k) => (S[shot.id] && S[shot.id].fields[k] !== undefined) ? S[shot.id].fields[k] : shot.fields[k];
+const save = () => { localStorage.setItem(KEY, JSON.stringify(S)); };
+
+function caption(shot){
+  const f = k => field(shot, k);
+  const outfit = f("outfit") ? "wearing " + f("outfit") : "";
+  const hair = f("hair") ? f("hair") + " hairstyle" : "";
+  return [DATA.trigger, f("framing"), f("angle"), f("expression"), hair, outfit, f("scene"), f("lighting")]
+    .filter(x => x && x.trim()).join(", ");
+}
+const UNIFORM_WORDS = ["uniform", "cardigan", "cloak", "capelet", "school", "knit vest"];
+const isUniform = shot => UNIFORM_WORDS.some(w => (field(shot, "outfit") || "").toLowerCase().includes(w));
+const status = shot => { const s = S[shot.id] || {}; if (s.drop) return "drop"; if (s.pick && field(shot,"angle")) return "done"; return "todo"; };
+
+function render(){
+  const root = document.getElementById("list"); root.innerHTML = "";
+  DATA.shots.forEach(shot => {
+    const s = S[shot.id] || {}, stt = status(shot);
+    if (FILTER === "todo" && stt !== "todo") return;
+    if ((FILTER === "第一批" || FILTER === "补拍") && shot.batch !== FILTER) return;
+    const box = document.createElement("div"); box.className = "shot " + (stt === "drop" ? "drop" : stt === "done" ? "done" : "");
+    const left = document.createElement("div");
+    left.innerHTML = `<div class="head">${shot.id} · ${shot.batch} · ${isUniform(shot) ? "校服" : "便装"}</div><div class="check">${shot.check || ""}</div>` +
+      (shot.suggest ? `<div class="sug">Claude 建议：${shot.suggest.note}</div>` : "");
+    const cands = document.createElement("div"); cands.className = "cands";
+    shot.candidates.forEach(c => {
+      const el = document.createElement("div"); el.className = "cand" + (s.pick === c.name ? " sel" : "");
+      el.innerHTML = `<img src="${c.thumb}" loading="lazy"><div class="nm">${c.name}</div>`;
+      el.onclick = () => { const t = st(shot.id); t.pick = t.pick === c.name ? null : c.name; if (t.pick) t.drop = false; save(); render(); };
+      el.ondblclick = e => { e.stopPropagation(); const z = document.getElementById("zoom"); z.querySelector("img").src = c.file; z.style.display = "flex"; };
+      cands.appendChild(el);
+    });
+    left.appendChild(cands);
+    const dropBtn = document.createElement("button"); dropBtn.className = "no" + (s.drop ? " on" : ""); dropBtn.textContent = "这个镜头不要";
+    dropBtn.style.marginTop = "6px";
+    dropBtn.onclick = () => { const t = st(shot.id); t.drop = !t.drop; if (t.drop) t.pick = null; save(); render(); };
+    left.appendChild(dropBtn);
+
+    const right = document.createElement("div");
+    FIELD_LABELS.forEach(([k, label]) => {
+      const lab = document.createElement("label"); lab.className = "f"; lab.textContent = label; right.appendChild(lab);
+      let inp;
+      if (k === "angle"){
+        inp = document.createElement("select"); inp.className = "f" + (field(shot,k) ? "" : " need");
+        inp.innerHTML = `<option value="">— 请选择 —</option>` + DATA.angles.map(a => `<option ${a === field(shot,k) ? "selected" : ""}>${a}</option>`).join("");
+      } else {
+        inp = document.createElement("input"); inp.className = "f"; inp.value = field(shot, k) || "";
+      }
+      inp.onchange = () => { st(shot.id).fields[k] = inp.value; save(); render(); };
+      right.appendChild(inp);
+    });
+    const cap = document.createElement("div"); cap.className = "cap"; cap.textContent = caption(shot); right.appendChild(cap);
+    box.appendChild(left); box.appendChild(right); root.appendChild(box);
+  });
+  renderStats();
+}
+
+function renderStats(){
+  const chosen = DATA.shots.filter(s => status(s) === "done");
+  const todo = DATA.shots.filter(s => status(s) === "todo").length, drop = DATA.shots.filter(s => status(s) === "drop").length;
+  const count = (arr, fn) => arr.reduce((m, x) => (m[fn(x)] = (m[fn(x)] || 0) + 1, m), {});
+  const fmt = o => Object.entries(o).map(([k, v]) => `${k} ${v}`).join("，");
+  const fr = count(chosen, s => { const f = field(s,"framing"); return f.includes("full") ? "全身" : f.includes("upper") ? "半身" : "特写"; });
+  const an = count(chosen, s => { const a = field(s,"angle"); return a.startsWith("back") ? "背影" : a.startsWith("side") ? "侧脸" : a.startsWith("three") ? "3/4 侧" : a.includes("camera") ? "俯/仰拍" : "正脸"; });
+  const un = chosen.filter(isUniform).length;
+  document.getElementById("stats").innerHTML =
+    `已选 <b>${chosen.length}</b> 张 · 不要 ${drop} · 未处理 ${todo}（共 ${DATA.shots.length} 个镜头）<br>` +
+    `构图：${fmt(fr) || "—"}　角度：${fmt(an) || "—"}　服装：校服 ${un} / 便装 ${chosen.length - un}` +
+    (chosen.length ? `（校服占 ${Math.round(100 * un / chosen.length)}%）` : "");
+}
+
+document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => {
+  FILTER = b.dataset.filter; document.querySelectorAll("[data-filter]").forEach(x => x.classList.toggle("on", x === b)); render();
+});
+document.getElementById("restore").onclick = () => {
+  if (window.confirm("把所有镜头恢复为 Claude 的建议？你做过的修改会丢失。")){ S = {}; applySuggestions(true); render(); }
+};
+document.getElementById("zoom").onclick = e => e.currentTarget.style.display = "none";
+document.getElementById("export").onclick = () => {
+  const todo = DATA.shots.filter(s => status(s) === "todo");
+  if (todo.length && !window.confirm(`还有 ${todo.length} 个镜头没处理（没选图或没选角度），它们不会进入训练集。继续导出？`)) return;
+  const items = DATA.shots.filter(s => status(s) === "done").map(s => {
+    const c = s.candidates.find(c => c.name === S[s.id].pick);
+    const fields = {}; Object.keys(s.fields).forEach(k => fields[k] = field(s, k));
+    return {id: s.id, batch: s.batch, file: c.file.replace(/^\.\.\//, ""), uniform: isUniform(s), fields, caption: caption(s)};
+  });
+  const dropped = DATA.shots.filter(s => status(s) === "drop").map(s => s.id);
+  const out = {trigger: DATA.trigger, exported: new Date().toISOString(), n: items.length, items, dropped};
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: "application/json"}));
+  a.download = "selection.json"; a.click();
+};
+document.getElementById("import").onchange = async e => {
+  const d = JSON.parse(await e.target.files[0].text());
+  (d.items || []).forEach(it => { const shot = DATA.shots.find(s => s.id === it.id); if (!shot) return;
+    const c = shot.candidates.find(c => c.file.endsWith(it.file.split("/").pop()));
+    S[it.id] = {pick: c ? c.name : null, drop: false, fields: it.fields || {}}; });
+  (d.dropped || []).forEach(id => S[id] = {pick: null, drop: true, fields: {}});
+  save(); render();
+};
+render();
+</script></html>
