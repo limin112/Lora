@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # moss01 人物 LoRA：生成训练配置 → 检查数据 → 文本/潜变量缓存 → 训练。
-# 前提：setup_env.sh 已运行；权重已就位（link_weights.sh / download_weights.sh）；
+# 前提：setup_env.sh 已运行；权重已下载（download_weights.sh）；
 #       训练集已生成（运行 prepare_moss01_for_lora.ipynb，得到 data/moss01/data/train/1_moss01/）。
 # 可选环境变量：GPUS（默认 0，可写 "0,1,2" 多卡）；STEPS（默认按卡数折算成相同训练量）
 #               CONFIG_ONLY=1：只生成并检查配置（上手教程第 3 步会用到），不缓存、不训练
 set -euo pipefail
 KIT="$(cd "$(dirname "$0")" && pwd)"
 PROJECT="${MOSS_PROJECT:-$KIT/data/moss01}"
-WEIGHTS="${MOSS_WEIGHTS:-$KIT/weights/MOSS-Image-Base-bf16}"
+WEIGHTS="${MOSS_WEIGHTS:-$KIT/weights/MOSS-Image-Base}"
 GPUS="${GPUS:-0}"
 NGPU=$(echo "$GPUS" | tr ',' '\n' | grep -c .)
 # 训练量：单卡 1200 步（每步 2 张图），多卡按卡数等比缩短；检查点和验证图间隔同比例

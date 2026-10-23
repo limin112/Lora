@@ -3,14 +3,14 @@
 用 [MOSS-Image](https://github.com/OpenMOSS/MOSS-Image)（OpenMOSS，Apache-2.0）训练一个人物 LoRA 的完整流程：环境安装、数据整理、训练、边训练边看效果、出图对比。示例人物是虚构的 **Moss**（触发词 `moss01`）。
 
 - 训练框架：[KohakuMossTrainer](https://github.com/KohakuBlueleaf/KohakuMossTrainer) 0.1.0（第三方，PyPI 包 `kohakumoss`）
-- 模型：MOSS-Image-Base（bf16 DiT + Qwen3.5-9B 文本编码器 + FLUX.2 VAE），文本编码器训练时冻结
+- 模型：MOSS-Image-Base（bf16 DiT + Qwen3.5-9B 文本编码器 + FLUX.2 VAE），文本编码器训练时冻结。KohakuMoss 0.1.0 的训练需要 **HF 目录格式**的权重（`transformer/ text_encoder/ tokenizer/ vae/`），ComfyUI 打包的单文件格式只能用于推理
 - 显卡：一张 24GB 以上的 NVIDIA 卡即可（实测 RTX 4090 48GB）
 
 ## 快速开始
 
 ### A. 在优云智算上用分享的镜像（环境已装好）
 
-镜像里已经包含：Python 环境、KohakuMoss、示例数据，以及一次完整训练的结果（`data/moss01/runs/`）。模型权重使用平台共享目录 `/model/ModelScope/Comfy-Org/MOSS-Image`，不占镜像空间。
+镜像里已经包含：Python 环境、KohakuMoss、示例数据、模型权重（`weights/MOSS-Image-Base/`，HF 格式，约 27GB），以及一次完整训练的结果（`data/moss01/runs/`）。
 
 **打开教程：**
 
@@ -50,8 +50,7 @@ ssh -p <端口> -N -L 8888:localhost:8888 root@<实例地址>
 cd moss-lora-kit
 bash setup_env.sh               # Python 3.12 + torch(cu130) + KohakuMoss + Jupyter 内核，约 10 分钟
                                 # 驱动较旧时：TORCH_CUDA=cu128 bash setup_env.sh
-bash link_weights.sh            # 优云智算：链接平台共享的权重
-# 或 bash download_weights.sh   # 其他机器：从 ModelScope 下载 bf16 权重（约 30GB）
+bash download_weights.sh        # 从 ModelScope 下载 MOSS-Image-Base 权重（HF 格式，约 27GB）
 ```
 
 然后：
@@ -65,7 +64,7 @@ bash link_weights.sh            # 优云智算：链接平台共享的权重
 ```
 moss-lora-kit/
 ├── setup_env.sh                       # 安装环境
-├── link_weights.sh / download_weights.sh   # 准备权重（二选一）
+├── download_weights.sh               # 下载权重
 ├── train_moss01.sh                    # 生成配置 → 缓存 → 训练
 ├── start_jupyter.sh                   # 备用：机器上没有 JupyterLab 时用
 ├── prepare_moss01_for_lora.ipynb      # 生成训练集 + 校验
@@ -78,7 +77,7 @@ moss-lora-kit/
 │   ├── source/                        # 候选图（M01–M48 第一批、P01–P20 补拍）、清单、selection.json
 │   ├── data/train/1_moss01/           # 生成的训练集（运行 prepare 后出现）
 │   └── runs/moss01-lora/              # 训练输出：checkpoints/、samples/、metrics.jsonl、export/
-├── weights/MOSS-Image-Base-bf16/      # 权重（软链接或下载）
+├── weights/MOSS-Image-Base/           # 权重（HF 格式：transformer/ text_encoder/ tokenizer/ vae/）
 └── vendor/kohakumoss-0.1.0/           # KohakuMoss 源码包（setup_env.sh 下载，含 configs/ scripts/）
 ```
 
@@ -101,7 +100,7 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
 - **ComfyUI**（需要原生支持 MOSS-Image 的 master/nightly 版本）：
   ```bash
   cd vendor/kohakumoss-0.1.0 && ../../.venv/bin/kogine run scripts/export/export.py \
-      --set WEIGHTS=../../weights/MOSS-Image-Base-bf16 \
+      --set WEIGHTS=../../weights/MOSS-Image-Base \
       --set ADAPTER=../../data/moss01/runs/moss01-lora/checkpoints/step_00000900/trainable.safetensors \
       --set FORMAT=comfy --set FUSED_QKV=True --set OUT=moss01.safetensors
   ```

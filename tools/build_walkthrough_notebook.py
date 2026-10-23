@@ -27,7 +27,7 @@ cells = [
 - **模型**：MOSS-Image-Base（5B DiT + Qwen3.5-9B 文本编码器 + FLUX.2 VAE）。
 - **不会影响正式训练**：本教程的所有输出都在 `walkthrough/` 目录；第 6、7 步只**读取**正式训练的检查点。
 - **运行环境**：在工具包根目录打开本 Notebook，内核选 **`Python (moss-train: KohakuMoss + torch)`**。用 GPU 的步骤运行前，确认 `GPU` 指定的那张卡是空闲的（`nvidia-smi`）。
-- **前提**：已经运行过 `setup_env.sh`（环境）、`link_weights.sh` 或 `download_weights.sh`（权重），并用 `train_moss01.sh` 完成了正式训练（第 6、7 步要用它的检查点）。"""),
+- **前提**：已经运行过 `setup_env.sh`（环境）、`download_weights.sh`（权重），并用 `train_moss01.sh` 完成了正式训练（第 6、7 步要用它的检查点）。"""),
 
     md("## 第 0 步：环境和路径\n\n`CUDA_VISIBLE_DEVICES` 必须在导入 torch 之前设置，所以这一格要最先运行。之后启动的训练、缓存子进程也会继承这些环境变量。"),
     code("""import os
@@ -44,7 +44,7 @@ OFFICIAL_RUN = Path(os.environ.get("MOSS_RUN", PROJECT / "runs/moss01-lora"))  #
 W = PROJECT / "walkthrough"                                                    # 本教程的所有输出
 KM = Path(os.environ.get("MOSS_KOHAKU", KIT / "vendor/kohakumoss-0.1.0"))      # KohakuMoss 源码（含 configs/ scripts/）
 KOGINE = Path(os.environ.get("MOSS_KOGINE", KIT / ".venv/bin/kogine"))
-WEIGHTS = os.environ.get("MOSS_WEIGHTS", str(KIT / "weights/MOSS-Image-Base-bf16"))   # 模型权重目录
+WEIGHTS = os.environ.get("MOSS_WEIGHTS", str(KIT / "weights/MOSS-Image-Base"))   # 模型权重目录（HF 格式）
 TRIGGER = "moss01"
 
 # 临时文件和编译缓存放在项目目录下
