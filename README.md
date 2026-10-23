@@ -67,10 +67,14 @@ moss-lora-kit/
 ├── download_weights.sh               # 下载权重
 ├── train_moss01.sh                    # 生成配置 → 缓存 → 训练
 ├── start_jupyter.sh                   # 备用：机器上没有 JupyterLab 时用
+├── setup_comfyui.sh / start_comfyui.sh  # 安装 / 启动 ComfyUI
+├── export_comfy.sh                    # 把某一步的检查点导出成 ComfyUI 用的 LoRA
+├── comfyui/                           # moss01 LoRA 工作流（界面格式 + API 格式）
 ├── prepare_moss01_for_lora.ipynb      # 生成训练集 + 校验
 ├── moss01_lora_walkthrough.ipynb      # 上手教程：看数据 → 训练（边训边看）→ 出图 → 对比
 ├── tools/
 │   ├── build_*_notebook.py            # 两个 Notebook 的生成脚本
+│   ├── build_comfy_workflow.py / comfy_smoke_test.py  # 生成 ComfyUI 工作流 / 自动出图测试
 │   ├── nbcheck.py / justified_collage.py
 │   └── dataset/                       # 制作数据集用的脚本：镜头清单、补拍清单、AI 预填建议、挑选页面
 ├── data/moss01/
@@ -97,15 +101,24 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
 
 ## 训练出来怎么用
 
-- **ComfyUI**（需要原生支持 MOSS-Image 的 master/nightly 版本）：
-  ```bash
-  cd vendor/kohakumoss-0.1.0 && ../../.venv/bin/kogine run scripts/export/export.py \
-      --set WEIGHTS=../../weights/MOSS-Image-Base \
-      --set ADAPTER=../../data/moss01/runs/moss01-lora/checkpoints/step_00000900/trainable.safetensors \
-      --set FORMAT=comfy --set FUSED_QKV=True --set OUT=moss01.safetensors
-  ```
-  放进 `ComfyUI/models/loras/`，用自带的 LoRA 加载节点；采样 50 步、CFG 3（shift 默认 5）。
-- **Python**：`kohakumoss.inference.MossPipeline.from_pretrained(权重目录, adapters=[(检查点, 1.0)])`，见教程第 6 步。
+### ComfyUI（镜像里已装好）
+
+镜像里有一份 ComfyUI（`/root/ComfyUI`，Comfy-Org master，原生支持 MOSS-Image），开机自动启动，端口 8188。模型直接软链平台共享目录 `/model/ModelScope/Comfy-Org/MOSS-Image/`，不占实例磁盘。
+
+1. **打开**：先按上面的方法打开 JupyterLab，把浏览器地址里 `/lab` 及后面的部分换成 **`/proxy/8188/`**（末尾的斜杠不能少），回车就是 ComfyUI。
+2. **导出 LoRA**：训练完成后，在 JupyterLab 终端里运行（数字是检查点的步数）：
+   ```bash
+   cd /root/moss-lora-kit && bash export_comfy.sh 900
+   ```
+   会生成 `/root/ComfyUI/models/loras/moss01.safetensors`。镜像里已经导出了一次完整训练的第 600、900、1200 步（`moss01_s600`、`moss01`、`moss01_s1200`）。
+3. **打开工作流**：ComfyUI 左侧「模板」→ 自定义节点里的 **moss01_lora** → `moss01_lora_t2i`。工作流已经接好：MOSS-Image Base（bf16）+ moss01 LoRA，50 步、CFG 3、Euler、Skip Layer Guidance 第 22 层。改提示词后点「运行」即可，一张 1024×1024 约 1 分钟。
+4. 经 `/proxy/8188/` 访问时，侧栏「工作流」里保存的文件打不开（代理会改写路径），需要保存的话用菜单导出成文件；用 SSH 端口转发（`ssh -p <端口> -N -L 8188:localhost:8188 root@<实例地址>`，再打开 `http://localhost:8188`）没有这个限制。
+
+在别的机器上装：`bash setup_comfyui.sh`（独立 venv，不影响训练环境），`bash start_comfyui.sh` 启动；需要 ComfyUI 2026-10-16 之后的版本。不在优云智算上时，模型从 [Comfy-Org/MOSS-Image](https://huggingface.co/Comfy-Org/MOSS-Image) 下载，放到 `ComfyUI/models/` 对应目录。
+
+### Python
+
+`kohakumoss.inference.MossPipeline.from_pretrained(权重目录, adapters=[(检查点, 1.0)])`，见教程第 6 步。
 
 ## 许可与说明
 

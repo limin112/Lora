@@ -13,6 +13,13 @@ NGPU=$(echo "$GPUS" | tr ',' '\n' | grep -c .)
 # 训练量：单卡 1200 步（每步 2 张图），多卡按卡数等比缩短；检查点和验证图间隔同比例
 STEPS="${STEPS:-$((1200 / NGPU))}"
 SAVE_EVERY=$((STEPS / 8)); SAMPLE_EVERY=$((STEPS / 4))
+# 默认学习率预热 100 步；少于 200 步的短训练（如快速测试）先按 200 步生成配置，再把步数和预热改小
+NEW_STEPS=$STEPS; SHORT_RUN=""
+if [ "$STEPS" -lt 200 ]; then
+    NEW_STEPS=200
+    SHORT_RUN="STEPS = $STEPS
+SCHEDULE = {\"mode\": \"cosine\", \"warmup\": $((STEPS / 10 + 1)), \"end\": -1, \"min_value\": 0.1}"
+fi
 KM="$KIT/vendor/kohakumoss-0.1.0"
 source "$KIT/.venv/bin/activate"
 export PYTHONWARNINGS=ignore TMPDIR="$PROJECT/tmp" XDG_CACHE_HOME="$PROJECT/cache" \
@@ -23,7 +30,7 @@ cd "$KM"
 CFG=configs/user/moss01-lora
 GPU_ARGS=(); [ "$NGPU" -gt 1 ] && GPU_ARGS=(--gpus "$NGPU")
 CUDA_VISIBLE_DEVICES="$GPUS" kohakumoss-config new train --force --weights "$WEIGHTS" --data "$PROJECT/data/train" \
-    --source kohya --name moss01-lora --steps "$STEPS" "${GPU_ARGS[@]}"
+    --source kohya --name moss01-lora --steps "$NEW_STEPS" "${GPU_ARGS[@]}"
 cat >> "$CFG.py" <<CONF
 
 # ---- moss01 覆盖项（下面的值覆盖上面的 layer） ----
@@ -51,6 +58,7 @@ SAMPLE_PROMPTS = [
     "a young woman, upper-body portrait, front view, calm expression, long loose hair, wearing a navy blazer, modern office, soft daylight",
 ]
 OUTPUT_DIR = "$PROJECT/runs"
+$SHORT_RUN
 CONF
 kohakumoss-config check "$CFG.py"
 cp "$CFG.py" "${CFG}_data.py" "$PROJECT/"            # 配置留档

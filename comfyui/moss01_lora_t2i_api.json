@@ -1,0 +1,125 @@
+{
+ "1": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "moss_image_base_bf16.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "2": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "moss01.safetensors",
+   "strength_model": 1.0,
+   "model": [
+    "1",
+    0
+   ]
+  }
+ },
+ "3": {
+  "class_type": "SkipLayerGuidanceDiTSimple",
+  "inputs": {
+   "double_layers": "",
+   "single_layers": "22",
+   "start_percent": 0.0,
+   "end_percent": 0.5,
+   "model": [
+    "2",
+    0
+   ]
+  }
+ },
+ "4": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen3.5_9b_bf16.safetensors",
+   "type": "moss_image",
+   "device": "default"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "moss01, upper-body portrait, front view, bright smile, long loose straight hair hairstyle, wearing a yellow raincoat, rainy city street at night, neon reflections",
+   "clip": [
+    "4",
+    0
+   ]
+  }
+ },
+ "6": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "nsfw, worst quality, bad anatomy, watermark, jpeg artifact",
+   "clip": [
+    "4",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": 1024,
+   "height": 1024,
+   "batch_size": 1
+  }
+ },
+ "8": {
+  "class_type": "KSampler",
+  "inputs": {
+   "seed": 0,
+   "steps": 50,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1.0,
+   "model": [
+    "3",
+    0
+   ],
+   "positive": [
+    "5",
+    0
+   ],
+   "negative": [
+    "6",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ]
+  }
+ },
+ "9": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "10": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "8",
+    0
+   ],
+   "vae": [
+    "9",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "moss01",
+   "images": [
+    "10",
+    0
+   ]
+  }
+ }
+}
