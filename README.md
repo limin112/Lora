@@ -10,10 +10,37 @@
 
 ### A. 在优云智算上用分享的镜像（环境已装好）
 
-1. 用镜像创建实例（RTX 4090），打开实例自带的 **JupyterLab**。
-2. 进入 `/root/moss-lora-kit`，打开 `moss01_lora_walkthrough.ipynb`，内核选 **Python (moss-train: KohakuMoss + torch)**，从上往下运行。
-
 镜像里已经包含：Python 环境、KohakuMoss、示例数据，以及一次完整训练的结果（`data/moss01/runs/`）。模型权重使用平台共享目录 `/model/ModelScope/Comfy-Org/MOSS-Image`，不占镜像空间。
+
+**打开教程：**
+
+1. 用镜像创建实例（RTX 4090）。实例运行后，在控制台的实例列表里点这台实例的 **JupyterLab** 按钮，平台会自动带上访问令牌。
+
+   <!-- 截图：控制台实例列表里的 JupyterLab 按钮 -->
+
+2. JupyterLab 打开后，左侧显示的是系统根目录 `/`。依次双击 **`root`** → **`moss-lora-kit`**，再双击 **`moss01_lora_walkthrough.ipynb`**。
+
+   <!-- 截图：左侧文件列表中 root/moss-lora-kit 下的文件 -->
+
+3. 选择内核 **`Python (moss-train: KohakuMoss + torch)`**：弹出选择框时直接选；没有弹出的话，点 Notebook 右上角的内核名称切换。
+
+   <!-- 截图：内核选择 -->
+
+4. 点第一个代码格子，按 **Shift + Enter** 运行并跳到下一格，从第 0 步开始往下运行。第 0 步显示 `使用 GPU 0` 和 GPU 占用情况，说明环境正常。
+
+**正式训练**：先跑完教程第 0–5 步，再在 JupyterLab 里新建终端（File → New → Terminal），运行：
+
+```bash
+cd /root/moss-lora-kit && bash train_moss01.sh
+```
+
+单卡 1200 步，约 70 分钟。训练期间可以在教程第 5 步运行 `watch(OFFICIAL_RUN)` 实时看进度和验证图；训练完成后运行第 6、7 步出图、对比检查点。实例只有一张 GPU 时，**教程的小练习和正式训练不要同时运行**。
+
+**不用控制台、从本机打开（可选）**：用 SSH 把实例的 8888 端口转发到本机，然后在浏览器打开 `http://localhost:8888/lab`，令牌是实例里的环境变量 `JUPYTER_TOKEN`：
+
+```bash
+ssh -p <端口> -N -L 8888:localhost:8888 root@<实例地址>
+```
 
 ### B. 在一台新机器上从头装
 
