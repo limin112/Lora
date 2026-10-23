@@ -20,11 +20,13 @@
 
 2. JupyterLab 打开后，左侧显示的是系统根目录 `/`。依次双击 **`root`** → **`moss-lora-kit`**，再双击 **`moss01_lora_walkthrough.ipynb`**。
 
-   <!-- 截图：左侧文件列表中 root/moss-lora-kit 下的文件 -->
+   ![先双击 root](docs/images/jupyter_root.png)
+
+   ![再进入 moss-lora-kit，双击教程](docs/images/jupyter_kit_files.png)
 
 3. 选择内核 **`Python (moss-train: KohakuMoss + torch)`**：弹出选择框时直接选；没有弹出的话，点 Notebook 右上角的内核名称切换。
 
-   <!-- 截图：内核选择 -->
+   ![右上角显示 moss-train 内核](docs/images/jupyter_kernel.png)
 
 4. 点第一个代码格子，按 **Shift + Enter** 运行并跳到下一格，从第 0 步开始往下运行。第 0 步显示 `使用 GPU 0` 和 GPU 占用情况，说明环境正常。
 
