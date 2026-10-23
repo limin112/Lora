@@ -3,6 +3,7 @@
 # 前提：setup_env.sh 已运行；权重已就位（link_weights.sh / download_weights.sh）；
 #       训练集已生成（运行 prepare_moss01_for_lora.ipynb，得到 data/moss01/data/train/1_moss01/）。
 # 可选环境变量：GPUS（默认 0，可写 "0,1,2" 多卡）；STEPS（默认按卡数折算成相同训练量）
+#               CONFIG_ONLY=1：只生成并检查配置（上手教程第 3 步会用到），不缓存、不训练
 set -euo pipefail
 KIT="$(cd "$(dirname "$0")" && pwd)"
 PROJECT="${MOSS_PROJECT:-$KIT/data/moss01}"
@@ -53,6 +54,7 @@ OUTPUT_DIR = "$PROJECT/runs"
 CONF
 kohakumoss-config check "$CFG.py"
 cp "$CFG.py" "${CFG}_data.py" "$PROJECT/"            # 配置留档
+if [ "${CONFIG_ONLY:-0}" = 1 ]; then echo "CONFIG_WRITTEN $KM/$CFG.py"; exit 0; fi
 FIRST_GPU="${GPUS%%,*}"
 CUDA_VISIBLE_DEVICES="$FIRST_GPU" kogine run scripts/data/cache_text.py --config "${CFG}_data.py"
 echo "[$(date -Is)] TEXT_CACHE_DONE"

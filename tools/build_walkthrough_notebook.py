@@ -174,6 +174,11 @@ KohakuMoss 的配置文件就是一个 Python 文件，里面是一些**大写�
 
 我们的教程配置继承了正式训练的配置 `moss01-lora.py`（LoRA 参数、caption 规则都一样），只改了：数据路径、单卡、20 步、输出目录。"""),
     code("""CFG_DIR = KM / "configs/user"
+if not (CFG_DIR / "moss01-lora.py").exists():          # 还没跑过正式训练：先只生成正式训练的配置
+    r = subprocess.run(["bash", str(KIT / "train_moss01.sh")], env={**os.environ, "CONFIG_ONLY": "1"},
+                       capture_output=True, text=True)
+    print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[-500:])
+    assert (CFG_DIR / "moss01-lora.py").exists(), "生成正式训练配置失败"
 train_cfg = CFG_DIR / "walkthrough-lora.py"
 data_cfg = CFG_DIR / "walkthrough-lora_data.py"
 
