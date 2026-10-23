@@ -16,7 +16,7 @@
 
 1. 用镜像创建实例（RTX 4090）。实例运行后，在控制台的实例列表里点这台实例的 **JupyterLab** 按钮，平台会自动带上访问令牌。
 
-   <!-- 截图：控制台实例列表里的 JupyterLab 按钮 -->
+   ![控制台里的 JupyterLab 按钮](docs/images/console_jupyterlab.png)
 
 2. JupyterLab 打开后，左侧显示的是系统根目录 `/`。依次双击 **`root`** → **`moss-lora-kit`**，再双击 **`moss01_lora_walkthrough.ipynb`**。
 
