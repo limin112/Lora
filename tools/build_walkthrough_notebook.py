@@ -59,26 +59,44 @@ import subprocess
 print(subprocess.run(["nvidia-smi", "--query-gpu=index,name,memory.used,utilization.gpu", "--format=csv,noheader"],
                      capture_output=True, text=True).stdout)
 print("使用 GPU", GPU, "| 教程输出目录", W)"""),
-    code("""import re
+    code("""import codecs
+import re
 import sys
+import time
+
+from IPython.display import Pretty, display
 
 NOISE = re.compile(r"distutils|addpackage|frozen site|string>|Remainder of file|_distutils_hack|^\\s*$")
 ANSI = re.compile(r"\\x1b\\[[0-9;]*m")              # 终端颜色代码
+PROGRESS = re.compile(r"\\d+%\\||it/s|s/it|s/step")     # 进度条
 
 
 def run(args, show=r".", tail=None):
-    \"\"\"在 KohakuMoss 目录里运行一条命令，实时打印匹配 `show` 的输出行（过滤掉进度条和无关告警）。\"\"\"
+    \"\"\"在 KohakuMoss 目录里运行一条命令。
+
+    运行期间，格子下面有一行状态实时显示已用时间和最新的进度条/日志；
+    匹配 `show` 的日志行会打印出来（tail=N 时只在结束后打印最后 N 行）。\"\"\"
     proc = subprocess.Popen([str(a) for a in args], cwd=KM, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            text=True, env=os.environ.copy())
-    keep, pat = [], re.compile(show)
-    for raw in proc.stdout:
-        for line in ANSI.sub("", raw).replace("\\r", "\\n").split("\\n"):
-            if NOISE.search(line) or not pat.search(line):
+                            env=os.environ.copy())
+    keep, pat, t0, shown = [], re.compile(show), time.time(), 0.0
+    status = display(Pretty("开始运行……"), display_id=True)
+    decoder, buf = codecs.getincrementaldecoder("utf-8")(errors="ignore"), ""
+    while chunk := os.read(proc.stdout.fileno(), 4096):
+        buf += decoder.decode(chunk)
+        *lines, buf = re.split(r"[\\r\\n]", buf)   # 进度条用 \\r 刷新，也按行处理
+        for line in (ANSI.sub("", l).strip() for l in lines):
+            if NOISE.search(line):
+                continue
+            if time.time() - shown > 0.5:                # 状态行最多每 0.5 秒刷新一次
+                status.update(Pretty(f"[已用 {time.time() - t0:.0f} 秒] {line[:160]}"))
+                shown = time.time()
+            if PROGRESS.search(line) or not pat.search(line):
                 continue
             keep.append(line)
             if tail is None:
                 print(line[:220], flush=True)
     proc.wait()
+    status.update(Pretty(f"{'完成' if proc.returncode == 0 else '出错'}，用时 {time.time() - t0:.0f} 秒"))
     if tail:
         print("\\n".join(l[:220] for l in keep[-tail:]))
     if proc.returncode != 0:
