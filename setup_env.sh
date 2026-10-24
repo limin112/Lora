@@ -59,8 +59,13 @@ if [ ! -d vendor/kohakumoss-0.1.0 ]; then
 fi
 # torch 已装好；KohakuMoss 的其余依赖都从 PIP_INDEX 安装
 retry uv pip install -q -e "vendor/kohakumoss-0.1.0[cuda]" "torch==${TORCH_VERSION}" --index-url "$PIP_INDEX"
-retry uv pip install -q -i "$PIP_INDEX" jupyterlab ipykernel nbconvert nbformat matplotlib pandas pillow
+# ipywidgets：Notebook 里的进度条（没有它，进度条会退回成红色的纯文本，还带一条警告）
+retry uv pip install -q -i "$PIP_INDEX" jupyterlab ipykernel ipywidgets nbconvert nbformat matplotlib pandas pillow
 .venv/bin/python -m ipykernel install --user --name moss-train --display-name "Python (moss-train: KohakuMoss + torch)" >/dev/null
+# 平台自带的 JupyterLab（优云智算：/usr/local/miniconda3）也要装进度条的前端扩展，JupyterLab 重启后生效
+if [ -x /usr/local/miniconda3/bin/pip ]; then
+  retry /usr/local/miniconda3/bin/pip install -q -i "$PIP_INDEX" jupyterlab_widgets
+fi
 
 .venv/bin/python - <<'PY'
 import torch, kohakumoss
