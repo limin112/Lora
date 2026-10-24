@@ -64,6 +64,9 @@ kohakumoss-config check "$CFG.py"
 cp "$CFG.py" "${CFG}_data.py" "$PROJECT/"            # 配置留档
 if [ "${CONFIG_ONLY:-0}" = 1 ]; then echo "CONFIG_WRITTEN $KM/$CFG.py"; exit 0; fi
 FIRST_GPU="${GPUS%%,*}"
+# ComfyUI 出过图后会把模型留在显存里（约 25GB）：先让它卸载（ComfyUI 继续运行），没开 ComfyUI 就跳过
+curl -s --noproxy '*' -m 5 -X POST -H "Content-Type: application/json" -d '{"unload_models": true, "free_memory": true}' \
+    "http://127.0.0.1:${COMFY_PORT:-8188}/free" >/dev/null 2>&1 && echo "已让 ComfyUI 释放显存（ComfyUI 继续运行）" || true
 CUDA_VISIBLE_DEVICES="$FIRST_GPU" kogine run scripts/data/cache_text.py --config "${CFG}_data.py"
 echo "[$(date -Is)] TEXT_CACHE_DONE"
 CUDA_VISIBLE_DEVICES="$FIRST_GPU" kogine run scripts/data/cache_latents.py --config "${CFG}_data.py"

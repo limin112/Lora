@@ -104,6 +104,18 @@ def run(args, show=r".", tail=None):
     return keep
 
 
+def free_comfyui(port=8188):
+    \"\"\"ComfyUI 出过图后会把模型留在显存里（约 25GB）。用 GPU 之前先让它卸载；ComfyUI 不用关，下次出图会自动重新加载。\"\"\"
+    import urllib.request
+    req = urllib.request.Request(f"http://127.0.0.1:{port}/free", data=b'{"unload_models": true, "free_memory": true}',
+                                 headers={"Content-Type": "application/json"})
+    try:
+        urllib.request.build_opener(urllib.request.ProxyHandler({})).open(req, timeout=5)   # 本机地址，不走代理
+        print("（已让 ComfyUI 释放显存，ComfyUI 继续运行）")
+    except OSError:
+        pass                                     # 没开 ComfyUI 就跳过
+
+
 print("helper ready")"""),
 
     md("""## 第 1 步：看数据
@@ -260,7 +272,8 @@ print("（这里只是用同样的规则模拟一下，实际写法由框架按�
 2. **图片潜变量**：图片经过 VAE 压缩后的表示。扩散模型实际是在潜变量上训练的，同样提前算好。
 
 缓存存在训练集旁边的 `cache/` 目录里，以后数据不变就不用再算。"""),
-    code("""run([KOGINE, "run", "scripts/data/cache_text.py", "--config", data_cfg], tail=6, show=r"INFO|WARN|ERROR|wrote|done")
+    code("""free_comfyui()
+run([KOGINE, "run", "scripts/data/cache_text.py", "--config", data_cfg], tail=6, show=r"INFO|WARN|ERROR|wrote|done")
 run([KOGINE, "run", "scripts/data/cache_latents.py", "--config", data_cfg], tail=6, show=r"INFO|WARN|ERROR|wrote|done")"""),
     code("""cache_dir = TRAIN_ROOT / "cache"
 total = 0
@@ -307,6 +320,7 @@ if old:
     time.sleep(5)
 if run_dir.exists():
     shutil.rmtree(run_dir)            # 重新练一次时清掉上一次的教程输出
+free_comfyui()
 train_proc = subprocess.Popen([str(KOGINE), "run", "scripts/train/moss.py", "--config", str(train_cfg)],
                               cwd=KM, stdout=open(LOG, "w"), stderr=subprocess.STDOUT,
                               env=os.environ.copy(), start_new_session=True)
@@ -451,6 +465,7 @@ STRENGTH = 1.0                  # LoRA 强度，0.7 左右身份会淡一些
 ckpt = OFFICIAL_RUN / f"checkpoints/step_{CKPT_STEP:08d}/trainable.safetensors"
 assert ckpt.exists(), f"没有这个检查点：{ckpt}"
 
+free_comfyui()
 pipe = MossPipeline.from_pretrained(WEIGHTS, dtype=torch.bfloat16, adapters=[(str(ckpt), STRENGTH)])
 print("模型和 LoRA 加载完成：", ckpt.parent.name, "强度", STRENGTH)"""),
     code("""PROMPTS = [
@@ -500,6 +515,7 @@ GRID_LAYOUT = "prompt-cols"
 OUT = "{W / 'grid'}"
 ''', encoding="utf-8")
 print(grid_cfg.read_text(encoding="utf-8"))
+free_comfyui()
 run([KOGINE, "run", "scripts/sample/compare_grid.py", "--config", grid_cfg], tail=4, show=r"INFO|ERROR")
 g = Image.open(W / "grid/grid.png")
 g.thumbnail((1600, 1600))
