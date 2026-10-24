@@ -32,7 +32,7 @@
     "Node name for S&R": "PrimitiveStringMultiline"
    },
    "widgets_values": [
-    "a young woman, upper-body portrait, front view, calm expression, long loose hair, wearing a plain white t-shirt, plain light gray studio backdrop, soft studio light"
+    "A dreamy, luminous half-body fashion photograph of a beautiful 26-year-old adult East Asian woman standing among pale pink blossoms inside a glass greenhouse. She has expressive, slightly wide-set eyes, a delicate oval face, and chestnut hair loosely gathered into a bun. She has a full, natural bust, a softly defined waist and balanced hips. She wears an opaque pale rose off-the-shoulder dress; the softly ruffled neckline sits below both shoulders, revealing her collarbones and a tasteful hint of cleavage. The fitted, structured bodice follows her bust with realistic support and fabric folds, then gently narrows at the waist. Her body is turned slightly to the side while her face turns toward the close camera with a gentle, quietly alluring smile. One hand lightly touches a low flowering branch beside her shoulder; the other hangs relaxed at her side. The frame includes her full head, bare shoulders, bust, waist, hips and the skirt down to mid-thigh. Low sunlight rims loose strands of hair, a blurred blossom covers one corner of the frame, and a faint rainbow sheen touches the opposite edge. Pearly soft pastel light and gentle lens diffusion create a soft, romantic mood while keeping her eyes and body contours sharp."
    ],
    "title": "提示词（不要写 moss01）"
   },
@@ -518,8 +518,8 @@
     "Node name for S&R": "EmptyFlux2LatentImage"
    },
    "widgets_values": [
-    1024,
-    1024,
+    896,
+    1152,
     1
    ]
   },

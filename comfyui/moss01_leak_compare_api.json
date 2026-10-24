@@ -1,0 +1,295 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "A dreamy, luminous half-body fashion photograph of a beautiful 26-year-old adult East Asian woman standing among pale pink blossoms inside a glass greenhouse. She has expressive, slightly wide-set eyes, a delicate oval face, and chestnut hair loosely gathered into a bun. She has a full, natural bust, a softly defined waist and balanced hips. She wears an opaque pale rose off-the-shoulder dress; the softly ruffled neckline sits below both shoulders, revealing her collarbones and a tasteful hint of cleavage. The fitted, structured bodice follows her bust with realistic support and fabric folds, then gently narrows at the waist. Her body is turned slightly to the side while her face turns toward the close camera with a gentle, quietly alluring smile. One hand lightly touches a low flowering branch beside her shoulder; the other hangs relaxed at her side. The frame includes her full head, bare shoulders, bust, waist, hips and the skirt down to mid-thigh. Low sunlight rims loose strands of hair, a blurred blossom covers one corner of the frame, and a faint rainbow sheen touches the opposite edge. Pearly soft pastel light and gentle lens diffusion create a soft, romantic mood while keeping her eyes and body contours sharp."
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "moss01"
+  }
+ },
+ "3": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "2",
+    0
+   ],
+   "string_b": [
+    "1",
+    0
+   ],
+   "delimiter": ", "
+  }
+ },
+ "4": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 0
+  }
+ },
+ "5": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "moss_image_base_bf16.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "6": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "moss01.safetensors",
+   "strength_model": 1.0,
+   "model": [
+    "5",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "SkipLayerGuidanceDiTSimple",
+  "inputs": {
+   "double_layers": "",
+   "single_layers": "22",
+   "start_percent": 0.0,
+   "end_percent": 0.5,
+   "model": [
+    "5",
+    0
+   ]
+  }
+ },
+ "8": {
+  "class_type": "SkipLayerGuidanceDiTSimple",
+  "inputs": {
+   "double_layers": "",
+   "single_layers": "22",
+   "start_percent": 0.0,
+   "end_percent": 0.5,
+   "model": [
+    "6",
+    0
+   ]
+  }
+ },
+ "9": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen3.5_9b_bf16.safetensors",
+   "type": "moss_image",
+   "device": "default"
+  }
+ },
+ "10": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "1",
+    0
+   ],
+   "clip": [
+    "9",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "3",
+    0
+   ],
+   "clip": [
+    "9",
+    0
+   ]
+  }
+ },
+ "12": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "nsfw, worst quality, bad anatomy, watermark, jpeg artifact",
+   "clip": [
+    "9",
+    0
+   ]
+  }
+ },
+ "13": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": 896,
+   "height": 1152,
+   "batch_size": 1
+  }
+ },
+ "14": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "20": {
+  "class_type": "KSampler",
+  "inputs": {
+   "seed": [
+    "4",
+    0
+   ],
+   "steps": 50,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1.0,
+   "model": [
+    "7",
+    0
+   ],
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "12",
+    0
+   ],
+   "latent_image": [
+    "13",
+    0
+   ]
+  }
+ },
+ "21": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "20",
+    0
+   ],
+   "vae": [
+    "14",
+    0
+   ]
+  }
+ },
+ "22": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "compare/A_base",
+   "images": [
+    "21",
+    0
+   ]
+  }
+ },
+ "23": {
+  "class_type": "KSampler",
+  "inputs": {
+   "seed": [
+    "4",
+    0
+   ],
+   "steps": 50,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1.0,
+   "model": [
+    "8",
+    0
+   ],
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "12",
+    0
+   ],
+   "latent_image": [
+    "13",
+    0
+   ]
+  }
+ },
+ "24": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "23",
+    0
+   ],
+   "vae": [
+    "14",
+    0
+   ]
+  }
+ },
+ "25": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "compare/B_lora_no_trigger",
+   "images": [
+    "24",
+    0
+   ]
+  }
+ },
+ "26": {
+  "class_type": "KSampler",
+  "inputs": {
+   "seed": [
+    "4",
+    0
+   ],
+   "steps": 50,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1.0,
+   "model": [
+    "8",
+    0
+   ],
+   "positive": [
+    "11",
+    0
+   ],
+   "negative": [
+    "12",
+    0
+   ],
+   "latent_image": [
+    "13",
+    0
+   ]
+  }
+ },
+ "27": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "26",
+    0
+   ],
+   "vae": [
+    "14",
+    0
+   ]
+  }
+ },
+ "28": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "compare/C_lora_trigger",
+   "images": [
+    "27",
+    0
+   ]
+  }
+ }
+}

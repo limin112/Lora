@@ -3,6 +3,7 @@
 python tools/build_comfy_workflow.py   ->  comfyui/moss01_lora_t2i.json          单张出图（拖进 ComfyUI）
                                            comfyui/moss01_lora_t2i_api.json      同上，API 格式（comfy_smoke_test.py 用）
                                            comfyui/moss01_leak_compare.json      对比：原模型 / 加 LoRA 不写 moss01 / 加 LoRA 写 moss01
+                                           comfyui/moss01_leak_compare_api.json  同上，API 格式
 
 Settings follow the OpenMOSS USERGUIDE (50 steps, CFG 3, Euler, shift 5 = ComfyUI model default,
 skip layer guidance on layer 22) and the Comfy-Org MOSS-Image Base template (SkipLayerGuidanceDiTSimple 0-50%).
@@ -18,8 +19,17 @@ VAE = "flux2-vae.safetensors"
 LORA = "moss01.safetensors"
 POSITIVE = ("moss01, upper-body portrait, front view, bright smile, long loose straight hair hairstyle, "
             "wearing a yellow raincoat, rainy city street at night, neon reflections")
-NEUTRAL = ("a young woman, upper-body portrait, front view, calm expression, long loose hair, "
-           "wearing a plain white t-shirt, plain light gray studio backdrop, soft studio light")
+NEUTRAL = ("A dreamy, luminous half-body fashion photograph of a beautiful 26-year-old adult East Asian woman standing among "
+           "pale pink blossoms inside a glass greenhouse. She has expressive, slightly wide-set eyes, a delicate oval face, "
+           "and chestnut hair loosely gathered into a bun. She has a full, natural bust, a softly defined waist and balanced "
+           "hips. She wears an opaque pale rose off-the-shoulder dress; the softly ruffled neckline sits below both shoulders, "
+           "revealing her collarbones and a tasteful hint of cleavage. The fitted, structured bodice follows her bust with "
+           "realistic support and fabric folds, then gently narrows at the waist. Her body is turned slightly to the side "
+           "while her face turns toward the close camera with a gentle, quietly alluring smile. One hand lightly touches a "
+           "low flowering branch beside her shoulder; the other hangs relaxed at her side. The frame includes her full head, "
+           "bare shoulders, bust, waist, hips and the skirt down to mid-thigh. Low sunlight rims loose strands of hair, a "
+           "blurred blossom covers one corner of the frame, and a faint rainbow sheen touches the opposite edge. Pearly soft "
+           "pastel light and gentle lens diffusion create a soft, romantic mood while keeping her eyes and body contours sharp.")
 NEGATIVE = "nsfw, worst quality, bad anatomy, watermark, jpeg artifact"
 SLG = ["", "22", 0.0, 0.5]
 KSAMPLER = [0, "fixed", 50, 3.0, "euler", "simple", 1.0]
@@ -87,6 +97,9 @@ WIDGET_NAMES = {
     "VAELoader": ["vae_name"],
     "VAEDecode": [],
     "SaveImage": ["filename_prefix"],
+    "PrimitiveStringMultiline": ["value"],
+    "StringConcatenate": ["string_a", "string_b", "delimiter"],
+    "PrimitiveInt": ["value", None],
 }
 
 
@@ -144,7 +157,7 @@ COMPARE = [
     node(11, "CLIPTextEncode", [860, 210], [300, 110], [""], [("clip", "CLIP", 9, 0), ("text", "STRING", 3, 0, True)],
          [CO], title="编码：moss01 + 提示词"),
     node(12, "CLIPTextEncode", [420, 730], [400, 150], [NEGATIVE], [("clip", "CLIP", 9, 0)], [CO], title="负面提示词"),
-    node(13, "EmptyFlux2LatentImage", [40, 900], [330, 120], [1024, 1024, 1], outputs=[L]),
+    node(13, "EmptyFlux2LatentImage", [40, 900], [330, 120], [896, 1152, 1], outputs=[L]),
     node(14, "VAELoader", [40, 1070], [330, 70], [VAE], outputs=[V]),
 ]
 for k, (title, model_src, pos_src, prefix) in enumerate([
@@ -166,5 +179,6 @@ OUT_DIR.mkdir(exist_ok=True)
 for name, nodes in [("moss01_lora_t2i", T2I), ("moss01_leak_compare", COMPARE)]:
     (OUT_DIR / f"{name}.json").write_text(json.dumps(ui_workflow(nodes), ensure_ascii=False, indent=1))
     print("wrote", OUT_DIR / f"{name}.json")
-(OUT_DIR / "moss01_lora_t2i_api.json").write_text(json.dumps(api_workflow(T2I), ensure_ascii=False, indent=1))
-print("wrote", OUT_DIR / "moss01_lora_t2i_api.json")
+for name, nodes in [("moss01_lora_t2i", T2I), ("moss01_leak_compare", COMPARE)]:
+    (OUT_DIR / f"{name}_api.json").write_text(json.dumps(api_workflow(nodes), ensure_ascii=False, indent=1))
+    print("wrote", OUT_DIR / f"{name}_api.json")
