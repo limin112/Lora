@@ -292,23 +292,34 @@ for d in sorted(x for x in cache_dir.iterdir()):
 - `samples/step_N/`：每 `SAMPLE_EVERY` 步一组验证图；
 - `checkpoints/step_N/`：每 `SAVE_EVERY` 步一个检查点（LoRA 权重）。
 
-下一格的 `watch()` 每隔一会儿读一次这些文件，显示进度、loss 曲线和最新的验证图，**不需要任何图形界面**。第一次在一张卡上训练会先花几分钟调优算子，这段时间进度是 0。"""),
-    code("""LOG = W / "train.log"
+下一格的 `watch()` 每 10 秒读一次这些文件，显示**当前阶段**、进度、预计剩余时间、loss 曲线和最新的验证图，**不需要任何图形界面**。
+
+**这一步大约 10–15 分钟，中间有两段时间进度条不动，都是正常的**：刚启动时加载模型（1–3 分钟），以及每 20 步停下来生成验证图（每次约 1–2 分钟）。`watch()` 会告诉你现在处在哪个阶段。"""),
+    code(r'''LOG = W / "train.log"
 run_dir = W / "runs/walkthrough"
+
+# 上一次的小练习如果还在后台跑（比如这一格被运行了两次），先停掉，免得两个训练写同一个目录
+old = subprocess.run(["pgrep", "-f", "scripts/train/moss.py --config .*walkthrough-lora.py"],
+                     capture_output=True, text=True).stdout.split()
+if old:
+    print("发现上一次的训练还在后台运行，先停掉：pid", " ".join(old))
+    subprocess.run(["pkill", "-f", "scripts/train/moss.py --config .*walkthrough-lora.py"])
+    time.sleep(5)
 if run_dir.exists():
     shutil.rmtree(run_dir)            # 重新练一次时清掉上一次的教程输出
 train_proc = subprocess.Popen([str(KOGINE), "run", "scripts/train/moss.py", "--config", str(train_cfg)],
                               cwd=KM, stdout=open(LOG, "w"), stderr=subprocess.STDOUT,
                               env=os.environ.copy(), start_new_session=True)
-print("训练已在后台启动，pid", train_proc.pid, "| 日志", LOG)"""),
-    code("""import time
+print("✅ 训练已在后台启动（pid", train_proc.pid, "）。60 步小练习大约需要 10–15 分钟。")
+print("👉 现在运行下一格，就能看到进度；这一格不用再运行第二次。")'''),
+    code(r'''import time
 
 import matplotlib.pyplot as plt
 from IPython.display import clear_output
 
 
 def latest_samples(run_dir, thumb=300):
-    \"\"\"把最新一组验证图拼成一行。\"\"\"
+    """把最新一组验证图拼成一行。"""
     folders = sorted((run_dir / "samples").glob("step_*")) if (run_dir / "samples").exists() else []
     folders = [f for f in folders if any(f.glob("*.png"))]
     if not folders:
@@ -326,23 +337,65 @@ def latest_samples(run_dir, thumb=300):
     return folders[-1].name, row
 
 
-def watch(run_dir, proc=None, every=20, max_minutes=None):
-    \"\"\"每 `every` 秒刷新一次：进度、剩余时间、loss 曲线、最新验证图。训练结束（或超时）自动停止；
-    也可以随时中断这个单元格，训练不受影响。\"\"\"
+def log_tail(path, size=200_000):
+    """日志最后一段，按行拆开（进度条用 \r 刷新，也拆开）。"""
+    if not path or not Path(path).exists():
+        return []
+    with open(path, "rb") as f:
+        f.seek(max(0, f.seek(0, 2) - size))
+        text = f.read().decode("utf-8", "ignore")
+    lines = (ANSI.sub("", l).strip() for l in re.split(r"[\r\n]", text))
+    return [l for l in lines if l and not NOISE.search(l)]
+
+
+def fmt_min(sec):
+    return f"{int(sec // 60)} 分 {int(sec % 60):02d} 秒"
+
+
+def watch(run_dir, proc=None, every=10, max_minutes=None):
+    """每 `every` 秒刷新一次：当前阶段、进度、预计剩余时间、loss 曲线、最新验证图。
+    训练结束（或超过 max_minutes）自动停止；也可以随时中断这个单元格，训练不受影响。"""
     t0 = time.time()
+    log = LOG if proc is not None else run_dir / "log.txt"
     while True:
-        total = json.loads((run_dir / "config.json").read_text()).get("STEPS") if (run_dir / "config.json").exists() else None
-        rows = [json.loads(l) for l in (run_dir / "metrics.jsonl").read_text().splitlines()] if (run_dir / "metrics.jsonl").exists() else []
+        cfg = json.loads((run_dir / "config.json").read_text()) if (run_dir / "config.json").exists() else {}
+        total, sample_every = cfg.get("STEPS"), cfg.get("SAMPLE_EVERY") or 0
+        rows = [json.loads(l) for l in (run_dir / "metrics.jsonl").read_text().splitlines()] \
+            if (run_dir / "metrics.jsonl").exists() else []
         rows = [r for r in rows if "loss" in r]
         step = rows[-1]["step"] if rows else 0
-        clear_output(wait=True)
-        if total:
-            done_frac = step / total
-            st = sorted(r["step_time"] for r in rows if "step_time" in r)
-            eta = f"，按每步 {st[len(st)//2]:.2f} 秒估计还需约 {st[len(st)//2] * (total - step) / 60:.1f} 分钟（不含出图）" if st else ""
-            print(f"[{'#' * int(30 * done_frac):<30}] {step}/{total} 步{eta}")
+        finished = (proc is not None and proc.poll() is not None) or (run_dir / "export").exists()
+        lines = log_tail(log)
+        last = lines[-1] if lines else ""
+
+        # 判断现在在做什么
+        if finished:
+            phase = "已结束"
+        elif "export" in last:
+            phase = "导出 LoRA 文件（马上就好）"
+        elif re.search(r"inference\.|sigma=|batch \d+/\d+", last):
+            phase = f"生成第 {step} 步的验证图（这段时间步数不动是正常的）"
+        elif not rows:
+            phase = "加载模型、准备数据（第一次约 1–3 分钟，这段时间步数为 0 是正常的）"
         else:
-            print("训练准备中（加载模型、调优算子）……")
+            phase = "训练中"
+
+        # 预计剩余时间：剩下的训练步 + 剩下几轮验证图（按上一轮出图的实际耗时估）
+        eta = None
+        st = sorted(r["step_time"] for r in rows if "step_time" in r)
+        if total and st and not finished:
+            gen = [float(m.group(1)) for m in (re.search(r"generate: \d+ image\(s\) in ([\d.]+) s", l) for l in lines) if m]
+            per_round = gen[-1] if gen else 40 * len(cfg.get("SAMPLE_PROMPTS") or [1])
+            rounds = (total // sample_every - step // sample_every) if sample_every else 0
+            eta = st[len(st) // 2] * (total - step) + rounds * per_round
+
+        clear_output(wait=True)
+        if not finished:
+            print(f"⏳ 训练在后台运行，这一格每 {every} 秒自动刷新一次，请耐心等待（可以先去做别的）。")
+            print(f"   已看了 {fmt_min(time.time() - t0)} | 当前：{phase}")
+        if total:
+            print(f"[{'#' * int(30 * step / total):<30}] {step}/{total} 步"
+                  + (f"，预计还要约 {fmt_min(eta)}（含出验证图）" if eta else ""))
         if rows:
             print(f"最新：loss={rows[-1]['loss']:.4f}  lr={rows[-1]['lr']:.2e}")
             fig, ax = plt.subplots(figsize=(7, 2.4))
@@ -354,12 +407,13 @@ def watch(run_dir, proc=None, every=20, max_minutes=None):
         if row is not None:
             print("最新验证图：", name)
             display(row)
-        finished = (proc is not None and proc.poll() is not None) or (run_dir / "export").exists()
+        if not finished and last:
+            print("最新日志：", last[:150])
         if finished:
             code = proc.returncode if proc is not None else 0
-            print("训练结束" if not code else f"训练出错（返回码 {code}），日志最后几行：")
+            print("✅ 训练结束" if not code else f"❌ 训练出错（返回码 {code}），日志最后几行：")
             if code:
-                print("\\n".join(LOG.read_text(errors="ignore").splitlines()[-15:]))
+                print("\n".join(lines[-15:]))
             return
         if max_minutes and time.time() - t0 > max_minutes * 60:
             print(f"已监控 {max_minutes} 分钟，先停下（训练还在继续），想继续看就再运行这一格")
@@ -367,7 +421,7 @@ def watch(run_dir, proc=None, every=20, max_minutes=None):
         time.sleep(every)
 
 
-watch(run_dir, proc=train_proc)"""),
+watch(run_dir, proc=train_proc)'''),
     code("""# 训练结束后：检查点和导出的 LoRA
 print("检查点：", sorted(p.name for p in (run_dir / "checkpoints").iterdir()))
 print("导出的 LoRA：", sorted(p.name for p in (run_dir / "export").iterdir()))
