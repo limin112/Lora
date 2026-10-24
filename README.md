@@ -112,7 +112,8 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
    ```
    会生成 `/root/ComfyUI/models/loras/moss01.safetensors`。镜像里已经导出了一次完整训练的第 600、900、1200 步（`moss01_s600`、`moss01`、`moss01_s1200`）。
 3. **打开工作流**：ComfyUI 左侧「模板」→ 自定义节点里的 **moss01_lora** → `moss01_lora_t2i`。工作流已经接好：MOSS-Image Base（bf16）+ moss01 LoRA，50 步、CFG 3、Euler、Skip Layer Guidance 第 22 层。改提示词后点「运行」即可，一张 1024×1024 约 45 秒（RTX 4090 48GB 实测）。
-4. 经 `/proxy/8188/` 访问时，侧栏「工作流」里保存的文件打不开（代理会改写路径），需要保存的话用菜单导出成文件；用 SSH 端口转发（`ssh -p <端口> -N -L 8188:localhost:8188 root@<实例地址>`，再打开 `http://localhost:8188`）没有这个限制。
+4. **泄漏检查**：同一位置的 `moss01_leak_compare`。只写一段提示词（不写 moss01），一次运行出三张：原模型 / 加 LoRA 不写 moss01 / 加 LoRA 写 moss01，三张用同一个种子。用来看 LoRA 除了 Moss 还学到了什么。
+5. 经 `/proxy/8188/` 访问时，侧栏「工作流」里保存的文件打不开（代理会改写路径），需要保存的话用菜单导出成文件；用 SSH 端口转发（`ssh -p <端口> -N -L 8188:localhost:8188 root@<实例地址>`，再打开 `http://localhost:8188`）没有这个限制。
 
 在别的机器上装：`bash setup_comfyui.sh`（独立 venv，不影响训练环境），`bash start_comfyui.sh` 启动；需要 ComfyUI 2026-10-16 之后的版本。不在优云智算上时，模型从 [Comfy-Org/MOSS-Image](https://huggingface.co/Comfy-Org/MOSS-Image) 下载，放到 `ComfyUI/models/` 对应目录。
 
@@ -124,4 +125,4 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
 
 - MOSS-Image：Apache-2.0；KohakuMoss：KohakuMoss License 1.0。
 - 示例数据由 Codex（gpt-image-2）以参考图生成，人物为虚构，仅供学习研究。服装和场景带有英伦寄宿学校（类似《哈利·波特》）风格，请勿用于商业用途。
-- 已知问题：示例数据校服占 79%、朝左的角度少；训练后不写触发词时也会出现 Moss 的特征（泄漏），详见教程和文章。
+- 已知问题：示例数据校服占 79%、朝左的角度少。这里用的是最简单的训练方法（只有 Moss 的图，没有正则图），加载 LoRA 后，提示词里没写的长相、人种、年龄感都会被拉向 Moss，写不写 `moss01` 区别很小；提示词里明确写的发色、眼睛颜色、性别不受影响。所以只在要画 Moss 时加载这个 LoRA。可以用 ComfyUI 的 `moss01_leak_compare` 工作流自己看。
