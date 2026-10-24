@@ -36,10 +36,12 @@ mkdir -p models/loras
 
 # moss01 示例工作流：放进一个空的 custom node 的 example_workflows/，在 ComfyUI「模板」里能直接打开
 # （经 JupyterLab /proxy/8188/ 访问时，侧栏「已保存的工作流」打不开，模板不受影响）
-mkdir -p custom_nodes/moss01_lora/example_workflows
-printf '# moss01 LoRA：只提供示例工作流，没有自定义节点\nNODE_CLASS_MAPPINGS = {}\nNODE_DISPLAY_NAME_MAPPINGS = {}\n' \
+# 另带一段前端脚本：打开 ComfyUI 时如果还是自带的默认工作流，自动换成「原模型 vs 加 LoRA」对比工作流
+mkdir -p custom_nodes/moss01_lora/example_workflows custom_nodes/moss01_lora/web
+printf '# moss01 LoRA：示例工作流 + 默认打开对比工作流的前端脚本，没有自定义节点\nNODE_CLASS_MAPPINGS = {}\nNODE_DISPLAY_NAME_MAPPINGS = {}\nWEB_DIRECTORY = "./web"\n' \
     > custom_nodes/moss01_lora/__init__.py
-cp "$KIT/comfyui/moss01_lora_t2i.json" custom_nodes/moss01_lora/example_workflows/
+cp "$KIT/comfyui/moss01_lora_t2i.json" "$KIT/comfyui/moss01_leak_compare.json" custom_nodes/moss01_lora/example_workflows/
+cp "$KIT/comfyui/moss01_default_workflow.js" custom_nodes/moss01_lora/web/
 
 # 优云智算：给平台自带的 JupyterLab 装 jupyter-server-proxy（ComfyUI 可从 <JupyterLab 地址>/proxy/8188/ 打开，
 # JupyterLab 重启后生效），并在 /start.d 放开机自启脚本（平台开机时会运行 /start.d/*.sh）

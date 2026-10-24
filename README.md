@@ -113,8 +113,8 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
    cd /root/moss-lora-kit && bash export_comfy.sh 900
    ```
    会生成 `/root/ComfyUI/models/loras/moss01.safetensors`。镜像里已经导出了一次完整训练的第 300、600、900、1200 步（`moss01_s300`、`moss01_s600`、`moss01`、`moss01_s1200`）。
-3. **打开工作流**：ComfyUI 左侧「模板」→ 自定义节点里的 **moss01_lora** → `moss01_lora_t2i`。工作流已经接好：MOSS-Image Base（bf16）+ moss01 LoRA，50 步、CFG 3、Euler、Skip Layer Guidance 第 22 层。改提示词后点「运行」即可，一张 1024×1024 约 45 秒（RTX 4090 48GB 实测）。
-4. **泄漏检查**：同一位置的 `moss01_leak_compare`。只写一段提示词（不写 moss01），一次运行出三张：原模型 / 加 LoRA 不写 moss01 / 加 LoRA 写 moss01，三张用同一个种子。用来看 LoRA 除了 Moss 还学到了什么。
+3. **原模型 vs 加 LoRA 对比**：第一次打开 ComfyUI，会自动打开对比工作流 `moss01_原模型vsLoRA对比`。左上角写一段提示词（不写 moss01），点「运行」，一次出三张：原模型 / 加 LoRA 不写 moss01 / 加 LoRA 写 moss01，三张用同一个种子，约 2 分钟。默认提示词是一段温室时尚人像，可以换 LoRA 文件（moss01_s300 / s600 / moss01 / s1200）和强度对比。
+4. **正常出图**：ComfyUI 左侧「模板」→ 往下翻到「扩展」→ **moss01_lora** → `moss01_lora_t2i`。工作流已经接好：MOSS-Image Base（bf16）+ moss01 LoRA，50 步、CFG 3、Euler、Skip Layer Guidance 第 22 层。改提示词后点「运行」即可，一张 1024×1024 约 45 秒（RTX 4090 48GB 实测）。对比工作流也在同一个位置（`moss01_leak_compare`）。
 5. 经 `/proxy/8188/` 访问时，侧栏「工作流」里保存的文件打不开（代理会改写路径），需要保存的话用菜单导出成文件；用 SSH 端口转发（`ssh -p <端口> -N -L 8188:localhost:8188 root@<实例地址>`，再打开 `http://localhost:8188`）没有这个限制。
 
 在别的机器上装：`bash setup_comfyui.sh`（独立 venv，不影响训练环境），`bash start_comfyui.sh` 启动；需要 ComfyUI 2026-10-16 之后的版本。不在优云智算上时，模型从 [Comfy-Org/MOSS-Image](https://huggingface.co/Comfy-Org/MOSS-Image) 下载，放到 `ComfyUI/models/` 对应目录。

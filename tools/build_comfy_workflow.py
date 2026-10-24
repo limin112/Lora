@@ -61,7 +61,7 @@ def node(nid, typ, pos, size, widgets, inputs=(), outputs=(), title=None):
             "inputs": [i if len(i) == 5 else (*i, False) for i in inputs], "outputs": list(outputs), "title": title}
 
 
-def ui_workflow(nodes):
+def ui_workflow(nodes, view=None):
     links, out_links = [], {}
     for n in nodes:
         for slot, (_, typ, src, src_slot, _) in enumerate(n["inputs"]):
@@ -83,7 +83,9 @@ def ui_workflow(nodes):
             d["title"] = n["title"]
         ui_nodes.append(d)
     return {"last_node_id": max(n["id"] for n in nodes), "last_link_id": len(links), "nodes": ui_nodes,
-            "links": links, "groups": [], "config": {}, "extra": {}, "version": 0.4}
+            "links": links, "groups": [], "config": {},
+            # 打开时的视角：缩放和偏移（不设的话 ComfyUI 会缩到能看全，节点文字太小会被画成灰块）
+            "extra": {"ds": view} if view else {}, "version": 0.4}
 
 
 WIDGET_NAMES = {
@@ -176,8 +178,9 @@ for k, (title, model_src, pos_src, prefix) in enumerate([
 COMPARE.append(node(40, "MarkdownNote", [1240, 1000], [1100, 240], [COMPARE_NOTE]))
 
 OUT_DIR.mkdir(exist_ok=True)
+VIEWS = {"moss01_lora_t2i": {"scale": 0.8, "offset": [80, 100]}, "moss01_leak_compare": {"scale": 0.65, "offset": [90, 120]}}
 for name, nodes in [("moss01_lora_t2i", T2I), ("moss01_leak_compare", COMPARE)]:
-    (OUT_DIR / f"{name}.json").write_text(json.dumps(ui_workflow(nodes), ensure_ascii=False, indent=1))
+    (OUT_DIR / f"{name}.json").write_text(json.dumps(ui_workflow(nodes, VIEWS[name]), ensure_ascii=False, indent=1))
     print("wrote", OUT_DIR / f"{name}.json")
 for name, nodes in [("moss01_lora_t2i", T2I), ("moss01_leak_compare", COMPARE)]:
     (OUT_DIR / f"{name}_api.json").write_text(json.dumps(api_workflow(nodes), ensure_ascii=False, indent=1))
