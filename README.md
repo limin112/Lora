@@ -14,9 +14,9 @@
 
 **打开教程：**
 
-1. 用镜像创建实例（RTX 4090）。实例运行后，在控制台的实例列表里点这台实例的 **JupyterLab** 按钮，平台会自动带上访问令牌。
+1. 用镜像创建实例（RTX 4090）。实例运行后，在控制台的实例列表里点这台实例的 **JupyterLab** 按钮，平台会自动带上访问令牌（旁边的 **ComfyUI** 按钮直接打开 ComfyUI，见下文）。
 
-   ![控制台里的 JupyterLab 按钮](docs/images/console_jupyterlab.png)
+   ![控制台里的 JupyterLab 和 ComfyUI 按钮](docs/images/console_buttons.png)
 
 2. JupyterLab 打开后，左侧显示的是系统根目录 `/`。依次双击 **`root`** → **`moss-lora-kit`**，再双击 **`moss01_lora_walkthrough.ipynb`**。
 
@@ -107,7 +107,7 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
 
 镜像里有一份 ComfyUI（`/root/ComfyUI`，Comfy-Org master，原生支持 MOSS-Image），开机自动启动，端口 8188。模型直接软链平台共享目录 `/model/ModelScope/Comfy-Org/MOSS-Image/`，不占实例磁盘。
 
-1. **打开**：先按上面的方法打开 JupyterLab，把浏览器地址里 `/lab` 及后面的部分换成 **`/proxy/8188/`**（末尾的斜杠不能少），回车就是 ComfyUI。
+1. **打开**：在控制台点实例的 **ComfyUI** 按钮。没有这个按钮时（比如自己装的环境），打开 JupyterLab，把浏览器地址里 `/lab` 及后面的部分换成 **`/proxy/8188/`**（末尾的斜杠不能少），回车就是 ComfyUI。
 2. **导出 LoRA**：训练完成后，在 JupyterLab 终端里运行（数字是检查点的步数）：
    ```bash
    cd /root/moss-lora-kit && bash export_comfy.sh 900
