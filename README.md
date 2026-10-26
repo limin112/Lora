@@ -1,6 +1,8 @@
-# moss-lora-kit：MOSS-Image 人物 LoRA 训练工具包
+# moss-lora-kit：马尔福女友 · MOSS-Image 人物 LoRA 训练工具包
 
-用 [MOSS-Image](https://github.com/OpenMOSS/MOSS-Image)（OpenMOSS，Apache-2.0）训练一个人物 LoRA 的完整流程：环境安装、数据整理、训练、边训练边看效果、出图对比。示例人物是虚构的 **Moss**（触发词 `moss01`）。
+**简体中文** | [English](README.en.md) | [日本語](README.ja.md)
+
+用 [MOSS-Image](https://github.com/OpenMOSS/MOSS-Image)（OpenMOSS，Apache-2.0）训练一个人物 LoRA 的完整流程：环境安装、数据整理、训练、边训练边看效果、出图对比。以「**马尔福女友**」为创作主题，示例人物是虚构的 **Moss**（触发词 `moss01`）。
 
 ![MOSS-Image 人物 LoRA 教程封面](docs/images/cover_5x2_moss_sakura.jpg)
 
