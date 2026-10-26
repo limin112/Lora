@@ -2,13 +2,34 @@
 
 用 [MOSS-Image](https://github.com/OpenMOSS/MOSS-Image)（OpenMOSS，Apache-2.0）训练一个人物 LoRA 的完整流程：环境安装、数据整理、训练、边训练边看效果、出图对比。示例人物是虚构的 **Moss**（触发词 `moss01`）。
 
+![MOSS-Image 人物 LoRA 教程封面](docs/images/cover_5x2_moss_sakura.jpg)
+
+**教程与镜像入口：** [阅读我的 X / 推特教程](https://x.com/MinLiBuilds/status/2114617833787470247?s=20) · [打开优云智算训练镜像](https://www.compshare.cn/images/DsDLGij1oUEb?referral_code=D8gyFELBBX7EvgT8sPgltW&ytag=GPU_YY_YX_X_shijiange1026)
+
 - 训练框架：[KohakuMossTrainer](https://github.com/KohakuBlueleaf/KohakuMossTrainer) 0.1.0（第三方，PyPI 包 `kohakumoss`）
 - 模型：MOSS-Image-Base（bf16 DiT + Qwen3.5-9B 文本编码器 + FLUX.2 VAE），文本编码器训练时冻结。KohakuMoss 0.1.0 的训练需要 **HF 目录格式**的权重（`transformer/ text_encoder/ tokenizer/ vae/`），ComfyUI 打包的单文件格式只能用于推理
 - 显卡：一张 24GB 以上的 NVIDIA 卡即可（实测 RTX 4090 48GB）
 
+## 人物效果预览
+
+下面是 MOSS-Image 加载人物 LoRA 后的实际出图，展示不同发型、服装和场景下的 Moss。上方封面用于教程展示，实际效果以这里的出图为参考。
+
+![人物 LoRA 出图：教师、樱花、短发、学院、海滩与咖啡馆](docs/images/moss01_lora_showcase.jpg)
+
+<details>
+<summary>展开查看训练第 300 / 600 / 900 / 1200 步的效果对比</summary>
+
+每行对应一个训练检查点，每列对应一种测试：校服、红毛衣、海滩全身、左侧脸，以及不写触发词 `moss01`。挑选检查点时，可以一起观察人物相似度、服装变化与提示词响应。
+
+![四个训练检查点的五组验证图对比](docs/images/moss01_ucloud_grid.jpg)
+
+</details>
+
 ## 快速开始
 
 ### A. 在优云智算上用分享的镜像（环境已装好）
+
+[点击打开优云智算镜像页面](https://www.compshare.cn/images/DsDLGij1oUEb?referral_code=D8gyFELBBX7EvgT8sPgltW&ytag=GPU_YY_YX_X_shijiange1026)，用这份镜像创建实例后，按下面的步骤打开教程。
 
 镜像里已经包含：Python 环境、KohakuMoss、示例数据、模型权重（`weights/MOSS-Image-Base/`，HF 格式，约 27GB），以及一次完整训练的结果（`data/moss01/runs/`）。
 
@@ -89,6 +110,10 @@ moss-lora-kit/
 
 ## 用自己的数据
 
+先看示例训练集的构图、角度、表情和服装变化。以下是用于训练虚构人物 Moss 的素材总览：
+
+![Moss 示例训练集：不同角度、表情、构图与服装](docs/images/moss01_train_set.jpg)
+
 训练集格式：一个文件夹，每张图配一个同名 `.txt`，内容是这张图的描述（caption），以触发词开头：
 
 ```text
@@ -118,6 +143,12 @@ caption 的原则：**会变的写进去**（构图、角度、表情、发型�
 5. 经 `/proxy/8188/` 访问时，侧栏「工作流」里保存的文件打不开（代理会改写路径），需要保存的话用菜单导出成文件；用 SSH 端口转发（`ssh -p <端口> -N -L 8188:localhost:8188 root@<实例地址>`，再打开 `http://localhost:8188`）没有这个限制。
 
 在别的机器上装：`bash setup_comfyui.sh`（独立 venv，不影响训练环境），`bash start_comfyui.sh` 启动；需要 ComfyUI 2026-10-16 之后的版本。不在优云智算上时，模型从 [Comfy-Org/MOSS-Image](https://huggingface.co/Comfy-Org/MOSS-Image) 下载，放到 `ComfyUI/models/` 对应目录。
+
+### 原模型与 LoRA 对比示例
+
+同一组提示词与种子的三路对比：左侧是原模型，中间是加载 LoRA 但不写 `moss01`，右侧是加载 LoRA 并写 `moss01`。这组图也展示了当前示例的限制：即使不写触发词，加载 LoRA 仍会影响人物长相；使用建议见文末说明。
+
+![温室人像对比：原模型、LoRA 无触发词、LoRA 有触发词](docs/images/moss01_leak_compare_greenhouse.jpg)
 
 ### Python
 
